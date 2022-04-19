@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.escondido{
+    display: none;
+}
+
+.topo{
+    width: 100%;
+    background-color: #EC362D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 69px;
+    font-size: 37px;
+    color: #FFFFFF;
+    font-weight: 700;
+    position: fixed;
+}
+
+.content{
+    position: relative;
+    top: 69px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+}
+
+.cont{
+    width: 1051px;
+}
+
+
+.nenhumQuizz{
+    margin-top: 77px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 181px;
+    border: 1px dashed #D5D5D5;
+    border-radius: 5px;
+}
+
+.nenhumQuizz p{
+    width: 250px;
+    height: 107px;
+    font-size: 20px;
+    color: #B9B9B9;
+    line-height: 23.44px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    width: 151px;
+    height: 40px;
+    color: #EC362D;
+    border-radius: 50px;
+    border: 1px dashed #EC362D;
+    background-color: #FAFAFA;
+} 
+
+.todosQuizzes{
+    margin-top: 77px;
+}
+
+.todosQuizzes p{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23.44px;
+    margin-bottom: 12px;
+}
+
+.quizzes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.quizzes img{
+    width: 340px;
+    height: 181px;
+    margin-bottom: 12px;
+}
+
+.quizzes :nth-child(3){
+    margin-right: 0;
+}
+
+@media (max-width: 1100px){
+    .cont{
+        width: 70vw;
+    }
+}
