@@ -39,9 +39,13 @@ body{
     width: 1051px;
 }
 
+.nenhum{
+    margin-top: 77px;
+    margin-bottom: 77px;
+}
+
 
 .nenhumQuizz{
-    margin-top: 77px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,22 +65,55 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 7px;
 }
 
 .button{
     width: 151px;
     height: 40px;
+    margin-top: -3px;
+    margin-bottom: 33px;
     color: #EC362D;
     border-radius: 50px;
     border: 1px dashed #EC362D;
     background-color: #FAFAFA;
 } 
 
-.todosQuizzes{
-    margin-top: 77px;
+.seus{
+    margin-top: 69px;
+    margin-bottom: 48px;
 }
 
-.todosQuizzes p{
+.add{
+    display: flex;
+    align-items: center;
+}
+
+.add p{
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 17px;
+}
+
+.addQuizz{
+    color: #EC362D;
+    font-size: 30px;
+}
+
+.quizzes_usuario{
+    display: flex;
+    justify-content: space-between;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.quizzes_usuario::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: rgba(200, 200, 200, 0.8);
+}
+
+.todos{
     font-size: 20px;
     font-weight: 700;
     line-height: 23.44px;
@@ -89,10 +126,30 @@ body{
     justify-content: space-between;
 }
 
-.quizzes img{
+.quizzes img, .quizzes_usuario img{
     width: 340px;
     height: 181px;
+    margin-top: 12px;
     margin-bottom: 12px;
+}
+
+.quizzes_usuario img{
+    margin-right: 15px;
+}
+
+.quizzes_usuario :last-child img{
+    margin-right: 0;
+}
+
+.legenda{
+    width: 320px;
+    height: 54px;
+    margin-top: -66px;
+    font-size: 19px;
+    color: #FFFFFF;
+    margin-left: 17px;
+    line-height: 22px;
+    text-align: center;
 }
 
 @media (max-width: 1100px){
@@ -100,8 +157,14 @@ body{
         width: 70vw;
     }
 
-    .quizzes img{
-        width: 70vw;
-        object-fit: cover;
+    .nenhum{
+        margin-top: 31px;
+        margin-bottom: 35px;
     }
+
+    .seus{
+        margin-top: 38px;
+        margin-bottom: 38px;
+    }
+    
 }
