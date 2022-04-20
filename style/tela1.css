@@ -13,7 +13,7 @@ body{
 }
 
 .topo{
-    width: 100vw;
+    width: 100%;
     background-color: #EC362D;
     display: flex;
     justify-content: center;
@@ -165,6 +165,19 @@ body{
     .seus{
         margin-top: 38px;
         margin-bottom: 38px;
+    }
+
+    .quizzes img, .quizzes_usuario img{
+        width: 70vw;
+        max-width: 340px;
+        object-fit: cover;
+    }
+
+    .legenda{
+        width: 64vw;
+        max-width: 320px;
+        overflow-y: scroll;
+        margin-top: -70px;
     }
     
 }
