@@ -1,0 +1,65 @@
+.tela3-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela3-1 p{
+    font-size: 23px;
+    font-weight: 700;
+    margin-top: 84px;
+    margin-bottom: 27px;
+}
+
+.tela3-1 ul{
+    width: 45vw;
+    min-width: 300px;
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 21px 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tela3-1 input{
+    width: 94%;
+    height: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4.5%;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+}
+
+.prosseguir{
+    margin-top: 75px;
+    width: 360px;
+    height: 54px;
+    color: #FFF5F4;
+    font-size: 21px;
+    background-color: #EC362D;
+    border: none;
+    border-radius: 15px;
+}
+
+@media (max-width: 1100px){
+    .tela3-1 p{
+        font-size: 20px;
+    }
+
+    .tela3-1 ul{
+        width: 100vw;
+        max-width: 600px;
+        padding: 4%;
+    }
+
+    .prosseguir{
+        width: 321px;
+        font-size: 18px;
+    }
+}
