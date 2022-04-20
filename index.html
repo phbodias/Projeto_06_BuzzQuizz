@@ -13,52 +13,22 @@
 </head>
 <body>
     <div class="topo">BuzzQuizz</div>
-        <div class="tela1 escondido">
-            <div class="content">
-                <div class="cont">
-                    <div class="seusQuizzes">
-                        <div class="nenhum ">
-                            <div class="nenhumQuizz">
-                                <p>Você não criou nenhum quizz ainda :(</p>
-                                <button class="button" onclick="addQuizz()">Criar Quizz</button>
-                            </div>
-                        </div>
-                        <div class="seus escondido">
-                            <div class="add">
-                                <p>Seus Quizzes</p>
-                                <ion-icon name="add-circle" class="addQuizz" onclick="addQuizz()"></ion-icon>
-                            </div>
-                            <div class="quizzes_usuario">
-                                <div class="quizz">
-                                    <img src="images/simpsons.png" alt="">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-                                <div class="quizz">
-                                    <img src="images/simpsons.png" alt="">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-                                <div class="quizz">
-                                    <img src="images/simpsons.png" alt="">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-                                <div class="quizz">
-                                    <img src="images/simpsons.png" alt="">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-                                <div class="quizz">
-                                    <img src="images/simpsons.png" alt="">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-                            </div>
+    <div class="tela1 escondido">
+        <div class="content">
+            <div class="cont">
+                <div class="seusQuizzes">
+                    <div class="nenhum ">
+                        <div class="nenhumQuizz">
+                            <p>Você não criou nenhum quizz ainda :(</p>
+                            <button class="button" onclick="addQuizz()">Criar Quizz</button>
                         </div>
                     </div>
-                    <div class="todosQuizzes">
-                        <p class="todos">Todos os Quizzs</p>
-                        <div class="quizzes">
-                            <div class="quizz">
-                                <img src="images/simpsons.png" alt="">
-                                <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                            </div>
+                    <div class="seus escondido">
+                        <div class="add">
+                            <p>Seus Quizzes</p>
+                            <ion-icon name="add-circle" class="addQuizz" onclick="addQuizz()"></ion-icon>
+                        </div>
+                        <div class="quizzes_usuario">
                             <div class="quizz">
                                 <img src="images/simpsons.png" alt="">
                                 <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
@@ -82,23 +52,67 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tela2 escondido"></div>
-        <div class="tela3">
-            <div class="content">
-                <div class="tela3-1">
-                    <p>Comece pelo começo</p>
-                    <ul>
-                        <input type="text" placeholder="Título do seu quizz" value="">
-                        <input type="text" placeholder="URL da imagem do seu quizz" value="">
-                        <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
-                        <input type="text" placeholder="Quantidade de níveis do quizz" value="">
-                    </ul>
-                    <button class="prosseguir">Prosseguir pra criar perguntas</button>
+                <div class="todosQuizzes">
+                    <p class="todos">Todos os Quizzs</p>
+                    <div class="quizzes">
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                        <div class="quizz">
+                            <img src="images/simpsons.png" alt="">
+
+                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="tela2 escondido"></div>
+    <div class="tela3 escondido">
+        <div class="escondido">
+            <div class="content tela3-1">
+                <p>Comece pelo começo</p>
+                <ul>
+                    <input type="text" placeholder="Título do seu quizz" value="">
+                    <input type="text" placeholder="URL da imagem do seu quizz" value="">
+                    <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
+                    <input type="text" placeholder="Quantidade de níveis do quizz" value="">
+                </ul>
+                <button class="prosseguir">Prosseguir pra criar perguntas</button>
+            </div>
+        </div>
+        <div>
+            <div class="content tela3-2">
+                <p>Crie suas perguntas</p>
+                <ul>
+                    <p>Pergunta 1</p>
+                    <input type="text" placeholder="Título do seu quizz" value="">
+                    <input type="text" placeholder="URL da imagem do seu quizz" value="">
+                    <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
+                    <input type="text" placeholder="Quantidade de níveis do quizz" value="">
+                </ul>
+                <button class="prosseguir">Prosseguir pra criar perguntas</button>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
