@@ -25,38 +25,49 @@
 </head>
 <body>
     <div class="topo">BuzzQuizz</div>
-    <div class="tela1">
-        <div class="content">
-            <div class="cont">
-                <div class="seusQuizzes">
-                    <div class="nenhum">
-                        <div class="nenhumQuizz">
-                            <p>Você não criou nenhum quizz ainda :(</p>
-                            <button class="button" onclick="addQuizz()">Criar Quizz</button>
+    <div class="tela">
+        <div class="tela1">
+            <div class="content">
+                <div class="cont">
+                    <div class="seusQuizzes">
+                        <div class="nenhum">
+                            <div class="nenhumQuizz">
+                                <p>Você não criou nenhum quizz ainda :(</p>
+                                <button class="button" onclick="addQuizz()">Criar Quizz</button>
+                            </div>
+                        </div>
+                        <div class="seus escondido">
+                            <div class="add">
+                                <p>Seus Quizzes</p>
+                                <ion-icon name="add-circle" class="addQuizz" onclick="addQuizz()"></ion-icon>
+                            </div>
+                            <div class="quizzes_usuario">
+                                <div class="quizz">
+                                    <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
+                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                                </div>
+                                <div class="quizz">
+                                    <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
+                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                                </div>
+                                <div class="quizz">
+                                    <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
+                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                                </div>
+                                <div class="quizz">
+                                    <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
+                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                                </div>
+                                <div class="quizz">
+                                    <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
+                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="seus escondido">
-                        <div class="add">
-                            <p>Seus Quizzes</p>
-                            <ion-icon name="add-circle" class="addQuizz" onclick="addQuizz()"></ion-icon>
-                        </div>
-                        <div class="quizzes_usuario">
-                            <div class="quizz">
-                                <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
-                                <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                            </div>
-                            <div class="quizz">
-                                <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
-                                <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                            </div>
-                            <div class="quizz">
-                                <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
-                                <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                            </div>
-                            <div class="quizz">
-                                <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
-                                <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                            </div>
+                    <div class="todosQuizzes">
+                        <p class="todos">Todos os Quizzs</p>
+                        <div class="quizzes">                        
                             <div class="quizz">
                                 <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
                                 <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
@@ -64,150 +75,97 @@
                         </div>
                     </div>
                 </div>
-                <div class="todosQuizzes">
-                    <p class="todos">Todos os Quizzs</p>
-                    <div class="quizzes">                        
-                        <div class="quizz">
-                            <img src="images/simpsons.png" alt="" onclick="ir_para_oquizz(this)">
-                            <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+            </div>
+        </div>
+        
+        <div class="tela3 escondido">
+            <div class="">
+                <div class="content tela3-1">
+                    <p class="comando">Comece pelo começo</p>
+                    <ul>
+                        <input type="text" placeholder="Título do seu quizz" value="">
+                        <input type="text" placeholder="URL da imagem do seu quizz" value="">
+                        <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
+                        <input type="text" placeholder="Quantidade de níveis do quizz" value="">
+                    </ul>
+                    <button class="prosseguir">Prosseguir pra criar perguntas</button>
+                </div>
+            </div>
+            <div>
+                <div class="escondido">
+                    <div class="content tela3-2">
+                        <p class="comando">Crie suas perguntas</p>
+                        <div class="">
+                            <ul>
+                                <p class="topico">Pergunta 1<ion-icon name="create-outline"></ion-icon></p>
+                            </ul>
+                            <ul>
+                                <p class="topico">Pergunta 2<ion-icon name="create-outline"></ion-icon></p>
+                            </ul>
+                            <ul>
+                                <p class="topico">Pergunta 3<ion-icon name="create-outline"></ion-icon></p>
+                            </ul>
                         </div>
+                        <div class="topicos ">
+                            <ul>
+                                <p class="topico">Pergunta 1</p>
+                                <div class="inputs">
+                                    <input type="text" placeholder="Texto da pergunta" value="">
+                                    <input type="text" placeholder="Cor de fundo da pergunta" value="">
+                                </div>
+                                <p class="topico">Resposta correta</p>
+                                <div class="inputs">
+                                    <input type="text" placeholder="Resposta correta" value="">
+                                    <input type="text" placeholder="URL da imagem" value="">
+                                </div>
+                                <p class="topico">Respostas incorretas</p>
+                                <div class="inputs">
+                                    <input type="text" placeholder="Resposta incorreta 1" value="">
+                                    <input type="text" placeholder="URL da imagem 1" value="">
+                                </div>
+                                <div class="inputs">
+                                    <input type="text" placeholder="Resposta incorreta 2" value="">
+                                    <input type="text" placeholder="URL da imagem 2" value="">
+                                </div>
+                                <div class="inputs">
+                                    <input type="text" placeholder="Resposta incorreta 3" value="">
+                                    <input type="text" placeholder="URL da imagem 3" value="">
+                                </div>
+                            </ul>
+                        </div>
+                        <button class="prosseguir">Prosseguir pra criar níveis</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="tela2">
-        <div class="banner">
-            <p>O quão Potterhead é você?</p>
-        </div>
-        <div class="conteiner-quiz">
-            <div class="box-pergunta">
-                <p>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
-            </div>
-
-            <div class="opcoes">
-                <div class="linha-1">
-                    <div class="alternativa">
-                        <div class="imagem">
-                            <img src="images/gato.jpg" alt="gato">
-                        </div>
-                        <p>Gatíneo</p>
-                    </div>
-                    
-                    <div class="alternativa">
-                        <div class="imagem">
-                            <img src="images/rato.jpg" alt="Rato">
-                        </div>
-                        <p>Ratata</p>
-                    </div>
-                </div>
-
-                <div class="linha-2">
-                    <div class="alternativa">
-                        <div class="imagem">
-                            <img src="images/Sapo.jpg" alt="Sapo gordo">
-                        </div>
-                        <p>Sapo gordo</p>
-                    </div>
-                    
-                    <div class="alternativa">
-                        <div class="imagem">
-                            <img src="images/furao.jpg" alt="furão">
-                        </div>
-                        <p>Mustela putorius (o Furão)</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="tela3 escondido">
-        <div class="">
-            <div class="content tela3-1">
-                <p class="comando">Comece pelo começo</p>
-                <ul>
-                    <input type="text" placeholder="Título do seu quizz" value="">
-                    <input type="text" placeholder="URL da imagem do seu quizz" value="">
-                    <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
-                    <input type="text" placeholder="Quantidade de níveis do quizz" value="">
-                </ul>
-                <button class="prosseguir">Prosseguir pra criar perguntas</button>
-            </div>
-        </div>
-        <div>
             <div class="escondido">
-                <div class="content tela3-2">
-                    <p class="comando">Crie suas perguntas</p>
-                    <div class="">
+                <div class="content tela3-3">
+                    <p class="comando">Agora, decida os níveis</p>
+                    <div class=>
                         <ul>
-                            <p class="topico">Pergunta 1<ion-icon name="create-outline"></ion-icon></p>
+                            <p class="topico">Nível 1<ion-icon name="create-outline"></ion-icon></p>
                         </ul>
                         <ul>
-                            <p class="topico">Pergunta 2<ion-icon name="create-outline"></ion-icon></p>
+                            <p class="topico">Nível 2<ion-icon name="create-outline"></ion-icon></p>
                         </ul>
                         <ul>
-                            <p class="topico">Pergunta 3<ion-icon name="create-outline"></ion-icon></p>
+                            <p class="topico">Nível 3<ion-icon name="create-outline"></ion-icon></p>
                         </ul>
                     </div>
                     <div class="topicos ">
                         <ul>
-                            <p class="topico">Pergunta 1</p>
+                            <p class="topico">Nível 1</p>
                             <div class="inputs">
-                                <input type="text" placeholder="Texto da pergunta" value="">
-                                <input type="text" placeholder="Cor de fundo da pergunta" value="">
-                            </div>
-                            <p class="topico">Resposta correta</p>
-                            <div class="inputs">
-                                <input type="text" placeholder="Resposta correta" value="">
-                                <input type="text" placeholder="URL da imagem" value="">
-                            </div>
-                            <p class="topico">Respostas incorretas</p>
-                            <div class="inputs">
-                                <input type="text" placeholder="Resposta incorreta 1" value="">
-                                <input type="text" placeholder="URL da imagem 1" value="">
-                            </div>
-                            <div class="inputs">
-                                <input type="text" placeholder="Resposta incorreta 2" value="">
-                                <input type="text" placeholder="URL da imagem 2" value="">
-                            </div>
-                            <div class="inputs">
-                                <input type="text" placeholder="Resposta incorreta 3" value="">
-                                <input type="text" placeholder="URL da imagem 3" value="">
+                                <input type="text" placeholder="Título do nível" value="">
+                                <input type="text" placeholder="% de acerto mínima" value="">
+                                <input type="text" placeholder="URL da imagem do nível" value="">
+                                <input type="text" placeholder="Descrição do nível" value="">
                             </div>
                         </ul>
                     </div>
-                    <button class="prosseguir">Prosseguir pra criar níveis</button>
                 </div>
             </div>
         </div>
-        <div class="escondido">
-            <div class="content tela3-3">
-                <p class="comando">Agora, decida os níveis</p>
-                <div class=>
-                    <ul>
-                        <p class="topico">Nível 1<ion-icon name="create-outline"></ion-icon></p>
-                    </ul>
-                    <ul>
-                        <p class="topico">Nível 2<ion-icon name="create-outline"></ion-icon></p>
-                    </ul>
-                    <ul>
-                        <p class="topico">Nível 3<ion-icon name="create-outline"></ion-icon></p>
-                    </ul>
-                </div>
-                <div class="topicos ">
-                    <ul>
-                        <p class="topico">Nível 1</p>
-                        <div class="inputs">
-                            <input type="text" placeholder="Título do nível" value="">
-                            <input type="text" placeholder="% de acerto mínima" value="">
-                            <input type="text" placeholder="URL da imagem do nível" value="">
-                            <input type="text" placeholder="Descrição do nível" value="">
-                        </div>
-                    </ul>
-                </div>
-            </div>
         </div>
-    </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>

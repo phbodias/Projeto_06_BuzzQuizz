@@ -18,7 +18,7 @@
 
 .banner{
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: 18vh; 
   margin-top: 69px;
   background-image: url(/images/hogwartsschoolpotter.jpg);
@@ -75,12 +75,12 @@
 
 .imagem{
   justify-content: center;
-  width: 43%;
+
 }
 
 .imagem img{
   object-fit: cover;
-  max-width: 330px;
+  width: 330px;
   height: 26%;
   max-height: 175px;
 }
