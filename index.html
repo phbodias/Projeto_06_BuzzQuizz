@@ -13,11 +13,11 @@
 </head>
 <body>
     <div class="topo">BuzzQuizz</div>
-    <div class="tela1 escondido">
+    <div class="tela1">
         <div class="content">
             <div class="cont">
                 <div class="seusQuizzes">
-                    <div class="nenhum ">
+                    <div class="nenhum">
                         <div class="nenhumQuizz">
                             <p>Você não criou nenhum quizz ainda :(</p>
                             <button class="button" onclick="addQuizz()">Criar Quizz</button>
@@ -86,10 +86,10 @@
         </div>
     </div>
     <div class="tela2 escondido"></div>
-    <div class="tela3 escondido">
+    <div class="tela3">
         <div class="escondido">
             <div class="content tela3-1">
-                <p>Comece pelo começo</p>
+                <p class="comando">Comece pelo começo</p>
                 <ul>
                     <input type="text" placeholder="Título do seu quizz" value="">
                     <input type="text" placeholder="URL da imagem do seu quizz" value="">
@@ -100,16 +100,49 @@
             </div>
         </div>
         <div>
-            <div class="content tela3-2">
-                <p>Crie suas perguntas</p>
-                <ul>
-                    <p>Pergunta 1</p>
-                    <input type="text" placeholder="Título do seu quizz" value="">
-                    <input type="text" placeholder="URL da imagem do seu quizz" value="">
-                    <input type="text" placeholder="Quantidade de perguntas do quizz" value="">
-                    <input type="text" placeholder="Quantidade de níveis do quizz" value="">
-                </ul>
-                <button class="prosseguir">Prosseguir pra criar perguntas</button>
+            <div class="escondido">
+                <div class="content tela3-2">
+                    <p class="comando">Crie suas perguntas</p>
+                    <div class="">
+                        <ul>
+                            <p class="topico">Pergunta 1<ion-icon name="create-outline"></ion-icon></p>
+                        </ul>
+                        <ul>
+                            <p class="topico">Pergunta 2<ion-icon name="create-outline"></ion-icon></p>
+                        </ul>
+                        <ul>
+                            <p class="topico">Pergunta 3<ion-icon name="create-outline"></ion-icon></p>
+                        </ul>
+                    </div>
+                    <div class="topicos escondido">
+                        <ul>
+                            <p class="topico">Pergunta 1</p>
+                            <div class="inputs">
+                                <input type="text" placeholder="Texto da pergunta" value="">
+                                <input type="text" placeholder="Cor de fundo da pergunta" value="">
+                            </div>
+                            <p class="topico">Resposta correta</p>
+                            <div class="inputs">
+                                <input type="text" placeholder="Resposta correta" value="">
+                                <input type="text" placeholder="URL da imagem" value="">
+                            </div>
+                            <p class="topico">Respostas incorretas</p>
+                            <div class="inputs">
+                                <input type="text" placeholder="Resposta incorreta 1" value="">
+                                <input type="text" placeholder="URL da imagem 1" value="">
+                            </div>
+                            <div class="inputs">
+                                <input type="text" placeholder="Resposta incorreta 2" value="">
+                                <input type="text" placeholder="URL da imagem 2" value="">
+                            </div>
+                            <div class="inputs">
+                                <input type="text" placeholder="Resposta incorreta 3" value="">
+                                <input type="text" placeholder="URL da imagem 3" value="">
+                            </div>
+                        </ul>
+                    </div>
+                    <button class="prosseguir">Prosseguir pra criar níveis</button>
+                </div>
             </div>
         </div>
     </div>

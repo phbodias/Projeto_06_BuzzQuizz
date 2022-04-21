@@ -30,7 +30,6 @@ body{
 .content{
     position: relative;
     min-height:calc(100vh - 69px);
-    top: 69px;
     display: flex;
     flex-direction: column;
     justify-content: center;
