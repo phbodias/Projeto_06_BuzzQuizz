@@ -1,0 +1,105 @@
+/* Estilização da página */
+.tela2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilização das perguntas do quiz */
+.banner,.box-pergunta, .conteiner-quiz,
+.opcoes, .alternativa, .linha-1, .linha-2, .imagem{
+  display: flex;
+  align-items: center;
+}
+
+.opcoes, .alternativa{
+  flex-direction: column;
+}
+
+.banner{
+  justify-content: center;
+  width: 100vw;
+  height: 18vh; 
+  margin-top: 69px;
+  background-image: url(/images/hogwartsschoolpotter.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner p{
+  color: #FFFFFF;
+}
+
+.conteiner-quiz{
+  flex-direction: column;
+  width: 53%;
+  height: 52%;
+  margin-top: 4%;
+  gap: 20px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.box-pergunta{
+  justify-content: center;
+  width: 90%;
+  height: 20%;
+  margin-top: 3%;
+  padding: 20px;
+  background-color: #434CA0;
+}
+
+.box-pergunta p{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 27px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.opcoes{
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+
+.linha-1, .linha-2{
+  justify-content: center;
+  width: 100%;
+  gap: 24px;
+  padding: 0 36px;
+}
+
+.imagem{
+  justify-content: center;
+  width: 43%;
+}
+
+.imagem img{
+  object-fit: cover;
+  max-width: 330px;
+  height: 26%;
+  max-height: 175px;
+}
+
+.alternativa p{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  margin: 7px;
+  width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 1100px){
+  .conteiner-quiz{
+    width: 100vw;
+  }
+
+  .box-pergunta p{
+    font-size: 19px;
+  }
+}
