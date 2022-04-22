@@ -1,4 +1,4 @@
-.tela3-1, .tela3-2, .tela3-3{
+.tela31, .tela32, .tela32{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@
     margin-bottom: 27px;
 }
 
-.tela3-1 ul, .tela3-2 ul, .tela3-3 ul{
+.tela31 ul, .tela32 ul, .tela32 ul{
     width: 45vw;
     min-width: 300px;
     display: flex;
@@ -25,7 +25,7 @@
     margin-bottom: 22px;
 }
 
-.tela3-1 input, .tela3-2 input, .tela3-3 input{
+.tela31 input, .tela32 input, .tela32 input{
     height: 46px;
     display: flex;
     flex-direction: column;
@@ -36,13 +36,13 @@
     margin-bottom: 10px;
 }
 
-.tela3-1 input, .inputs{
+.tela31 input, .inputs{
     width: 94%;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-.tela3-2 input, .tela3-3 input{
+.tela32 input, .tela32 input{
     width: 100%;
 }
 
@@ -70,13 +70,13 @@
         font-size: 20px;
     }
 
-    .tela3-1 ul, .tela3-2 ul, .tela3-3 ul{
+    .tela31 ul, .tela32 ul, .tela32 ul{
         width: 100vw;
         max-width: 600px;
         padding: 4%;
     }
 
-    .tela3-1 input, .inputs{
+    .tela31 input, .inputs{
         width: 94vw;
     }
 
