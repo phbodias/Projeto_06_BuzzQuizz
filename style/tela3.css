@@ -1,4 +1,4 @@
-.tela31, .tela32, .tela32{
+.tela31, .tela32, .tela33{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@
     margin-bottom: 27px;
 }
 
-.tela31 ul, .tela32 ul, .tela32 ul{
+.tela31 ul, .tela32 ul, .tela33 ul{
     width: 45vw;
     min-width: 300px;
     display: flex;
@@ -25,7 +25,7 @@
     margin-bottom: 22px;
 }
 
-.tela31 input, .tela32 input, .tela32 input{
+.tela31 input, .tela32 input, .tela33 input{
     height: 46px;
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
     margin-bottom: 15px;
 }
 
-.tela32 input, .tela32 input{
+.tela32 input, .tela33 input{
     width: 100%;
 }
 
@@ -70,7 +70,7 @@
         font-size: 20px;
     }
 
-    .tela31 ul, .tela32 ul, .tela32 ul{
+    .tela31 ul, .tela32 ul, .tela33 ul{
         width: 100vw;
         max-width: 600px;
         padding: 4%;

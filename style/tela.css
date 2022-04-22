@@ -27,10 +27,11 @@ body{
 
 .content{
     position: relative;
-    min-height:calc(100vh - 69px);
+    min-height:calc(100vh);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 69px;
     background-color: #FAFAFA;
 }
