@@ -6,7 +6,7 @@ function validURL(str) {
       '(\\?[;&a-z\\d%_.~+=-]*)?'+
       '(\\#[-a-z\\d_]*)?$','i');
     return !!pattern.test(str);
-  }
+}
 
 function addQuizz(){
     const tela = document.querySelector(".tela");    
@@ -18,10 +18,10 @@ function addQuizz(){
                 <div class="content tela31">
                     <p class="comando">Comece pelo começo</p>
                     <ul>
-                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
-                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="3">
-                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="2">
+                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="">
+                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="5">
+                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="5">
                     </ul>
                     <button class="prosseguir" onclick="addDados_perguntas()">Prosseguir pra criar perguntas</button>
                 </div>
@@ -43,13 +43,13 @@ function addDados_perguntas(){
     let n = document.querySelector(".n");
     let niveis = document.querySelector(".niveis");
     if (verificaDados(tit.value, url.value, n.value, niveis.value)){
-        let dados = {
-            title: tit.value,
-            image: url.value,
-            questions: [],
-            levels: niveis.value,
-        }
-        criarPerguntas(dados, n.value, niveis.value)
+        dados.title = tit.value;
+        dados.image = url.value;
+        dados.questions =  [];
+        dados.levels =  [];
+        nPerguntas = n.value;
+        nNiveis = niveis.value;
+        criarPerguntas();
     }else{
         if (!validURL(url.value)){
             alert("URL inválida!")
@@ -63,19 +63,13 @@ function addDados_perguntas(){
     }
 }
 
-function criarPerguntas(dados, nPerguntas, nNiveis){
+function criarPerguntas(){
     const tela3= document.querySelector(".tela3");
     const part1 = document.querySelector(".parte1");
     part1.classList.add("escondido");
     tela3.innerHTML += `
-        <div>
-            <div class="tela">
-                <div>
-                    <div class="content tela32">
-                        <p class="comando">Crie suas perguntas</p>
-                    </div>
-                </div>
-            </div>
+        <div class="content tela32">
+            <p class="comando">Crie suas perguntas</p>
         </div>
     `
     const content = document.querySelector(".tela32");
@@ -93,7 +87,7 @@ function criarPerguntas(dados, nPerguntas, nNiveis){
         `
     };
     content.innerHTML += `
-        <button class="prosseguir" onclick="criarNiveis(${dados, nNiveis})">Prosseguir pra criar níveis</button>
+        <button class="prosseguir" onclick="criarNiveis()">Prosseguir pra criar níveis</button>
     `
 }
 
@@ -106,8 +100,8 @@ function abrirPergunta(pergunta, i){
             <ul>
                 <p class="topico">Pergunta ${i}</p>
                 <div class="inputs">
-                    <input type="text" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
-                    <input type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="">
+                    <input class="titlePergunta" type="text" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
+                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="">
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
@@ -130,30 +124,79 @@ function abrirPergunta(pergunta, i){
             </ul>
         </div>
     `
+    a();
 }
 
-function criarNiveis(dados, nNiveis){
+function a(){
+    const question = {};
+    const tit = document.querySelector(".titlePergunta");
+    const col = document.querySelector(".corPergunta");;
+    question.title = tit.value;
+    question.color = col.value;
+    console.log(question);
+}
+
+function criarNiveis(){
     const tela32 = document.querySelector(".tela32");
     const tela = document.querySelector(".tela");
     tela32.parentNode.classList.add("escondido");
     tela.innerHTML += `
         <div>
+            <div class="content tela33">
+                <p class="comando">Agora, decida os níveis</p>
+            </div>
+        </div>
+        `
+    const content = document.querySelector(".tela33");
+    for (let i = 0; i < nNiveis; i++){
+        content.innerHTML += `
+            <div>
+                <div>
+                    <ul onclick="abrirNivel(this, ${i+1})">
+                        <p class="topico">Nível ${i+1}<ion-icon name="create-outline"></ion-icon></p>
+                    </ul>
+                </div>
+            </div>
+        `
+    }
+    content.innerHTML += `
+        <button class="prosseguir" onclick="finalizar()">Finalizar Quizz</button>
+    `
+}
+
+function abrirNivel(nivel, i){
+    const parent = nivel.parentNode;
+    parent.classList.add("escondido");
+    parent.parentNode.innerHTML += `
+        <div class="topicos ">
+            <ul>
+                <p class="topico">Nível ${i}</p>
+                <div class="inputs">
+                    <input type="text" placeholder="Título do nível" value="">
+                    <input type="text" placeholder="% de acerto mínima" value="">
+                    <input type="text" placeholder="URL da imagem do nível" value="">
+                    <input type="text" placeholder="Descrição do nível" value="" class="descNivel">
+                </div>
+            </ul>
+        </div>
+    `
+}
+
+function finalizar(){
+    console.log(dados);
+    const tela = document.querySelector(".tela33");
+    tela.parentNode.classList.add("escondido");
+    tela.parentNode.parentNode.innerHTML += `
+        <div>
             <div>
                 <div class="tela">
                     <div>
-                        <div class="content tela33">
-                            <p class="comando">Agora, decida os níveis</p>
-                            <div class=>
-                                <ul>
-                                    <p class="topico">Nível 1<ion-icon name="create-outline"></ion-icon></p>
-                                </ul>
-                                <ul>
-                                    <p class="topico">Nível 2<ion-icon name="create-outline"></ion-icon></p>
-                                </ul>
-                                <ul>
-                                    <p class="topico">Nível 3<ion-icon name="create-outline"></ion-icon></p>
-                                </ul>
-                            </div>
+                        <div class="content tela34">
+                            <p class="comando">Seu quizz está pronto!</p>
+                            <img class="image_quizz" src="${dados.image}" alt="">
+                            <p class="legenda">${dados.title}</p>
+                            <button class="acessar" onclick="acessarQuiz()">Acessar Quizz</button>
+                            <button class="voltarHome" onclick="home()">Voltar pra home</button>
                         </div>
                     </div>
                 </div>
@@ -161,19 +204,16 @@ function criarNiveis(dados, nNiveis){
             
         </div>
     `
-    const content = document.querySelector(".tela33");
-    content.innerHTML += `
-        <button class="prosseguir" onclick="finalizar(${dados})">Finalizar Quizz</button>
-    `
 }
 
-function finalizar(dados){
-    alert("quase la")
+function home(){
+    window.location.reload();
 }
 
 /*---------------------------------------------- VARIÁVEIS GLOBAIS  ----------------------------------------------*/
 
-
+let dados = {};
+let nPerguntas, nNiveis;
 
 
 

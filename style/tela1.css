@@ -71,7 +71,7 @@
     overflow-y: hidden;
 }
 
-.quizzes_usuario::-webkit-scrollbar{
+.quizzes_usuario::-webkit-scrollbar, .legenda::-webkit-scrollbar{
     width: 5px;
     height: 5px;
     background-color: rgba(200, 200, 200, 0.8);
@@ -95,6 +95,7 @@
     height: 181px;
     margin-top: 12px;
     margin-bottom: 12px;
+    object-fit: cover;
 }
 
 .quizzes_usuario img{

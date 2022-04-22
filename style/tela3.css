@@ -55,6 +55,7 @@
 }
 
 .prosseguir{
+    margin-top: 45px;
     margin-bottom: 50px;
     width: 360px;
     height: 54px;
@@ -63,6 +64,33 @@
     background-color: #EC362D;
     border: none;
     border-radius: 15px;
+}
+
+.acessar{
+    margin-top: 45px;
+    width: 220px;
+    height: 54px;
+    color: #FFF5F4;
+    font-size: 21px;
+    background-color: #EC362D;
+    border: none;
+    border-radius: 15px;
+}
+
+.image_quizz{
+    width: 500px;
+    height: 266px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    object-fit: cover;
+}
+
+.voltarHome{
+    border: none;
+    background-color: #FAFAFA;
+    font-size: 21px;
+    color: #818181;
+    margin-top: 9px;
 }
 
 @media (max-width: 1100px){
@@ -83,5 +111,9 @@
     .prosseguir{
         width: 321px;
         font-size: 18px;
+    }
+
+    .descNivel{
+        min-height: 177px;
     }
 }
