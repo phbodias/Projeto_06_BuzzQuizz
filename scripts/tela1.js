@@ -4,16 +4,18 @@ function obterQuizz(){
 }
 
 function sucess(resposta){
-    let data = resposta.data;
+    const data = resposta.data;
     console.log(data);
     const quizzes = document.querySelector(".quizzes");
     for (let i = 0; i < data.length; i++){
-        quizzes.innerHTML += `
-            <div class="quizz">
-                <img src="${data[i].image}" alt="" onclick="ir_para_oquizz(this)">
-                <p class="legenda">${data[i].title}</p>
-            </div>
-        `
+        if (validURL(data[i].image)){
+            quizzes.innerHTML += `
+                <div class="quizz">
+                    <img src="${data[i].image}" alt="" onclick="ir_para_oquizz(this)">
+                    <p class="legenda">${data[i].title}</p>
+                </div>
+            `
+        }
     }
 }
 

@@ -1,11 +1,23 @@
+function isImage(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)/.test(url);
+}
+
 function validURL(str) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+
-      '(\\#[-a-z\\d_]*)?$','i');
-    return !!pattern.test(str);
+    var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(str)) {
+        return false;
+    } else {
+        return isImage(str);
+    }
+}
+
+function validHexa(str){
+    var regex = /^#?([a-f0-9]{6}|[a-f0-9]{3})$/i;
+    if(!regex. test(str)) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function addQuizz(){
@@ -19,9 +31,9 @@ function addQuizz(){
                     <p class="comando">Comece pelo começo</p>
                     <ul>
                         <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="">
-                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="5">
-                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="5">
+                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="https://img.freepik.com/vetores-gratis/imagens-animadas-abstratas-neon-lines_23-2148344065.jpg?w=2000">
+                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="3">
+                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="3">
                     </ul>
                     <button class="prosseguir" onclick="addDados_perguntas()">Prosseguir pra criar perguntas</button>
                 </div>
@@ -87,7 +99,7 @@ function criarPerguntas(){
         `
     };
     content.innerHTML += `
-        <button class="prosseguir" onclick="criarNiveis()">Prosseguir pra criar níveis</button>
+        <button class="prosseguir" onclick="a()">Prosseguir pra criar níveis</button>
     `
 }
 
@@ -105,35 +117,83 @@ function abrirPergunta(pergunta, i){
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
-                    <input type="text" placeholder="Resposta correta" value="">
-                    <input type="text" placeholder="URL da imagem" value="">
+                    <input class="correta" type="text" placeholder="Resposta correta" value="">
+                    <input class="urlCorreta" type="text" placeholder="URL da imagem" value="">
                 </div>
                 <p class="topico">Respostas incorretas</p>
                 <div class="inputs">
-                    <input type="text" placeholder="Resposta incorreta 1" value="">
-                    <input type="text" placeholder="URL da imagem 1" value="">
+                    <input class="incorreta1" type="text" placeholder="Resposta incorreta 1" value="">
+                    <input class="urlIncorreta1" type="text" placeholder="URL da imagem 1" value="">
                 </div>
                 <div class="inputs">
-                    <input type="text" placeholder="Resposta incorreta 2" value="">
-                    <input type="text" placeholder="URL da imagem 2" value="">
+                    <input class="incorreta2" type="text" placeholder="Resposta incorreta 2" value="">
+                    <input class="urlIncorreta2" type="text" placeholder="URL da imagem 2" value="">
                 </div>
                 <div class="inputs">
-                    <input type="text" placeholder="Resposta incorreta 3" value="">
-                    <input type="text" placeholder="URL da imagem 3" value="">
+                    <input class="incorreta3" type="text" placeholder="Resposta incorreta 3" value="">
+                    <input class="urlIncorreta3" type="text" placeholder="URL da imagem 3" value="">
                 </div>
             </ul>
         </div>
     `
-    a();
 }
 
 function a(){
     const question = {};
-    const tit = document.querySelector(".titlePergunta");
-    const col = document.querySelector(".corPergunta");;
-    question.title = tit.value;
-    question.color = col.value;
-    console.log(question);
+    const titlePergunta = document.querySelector(".titlePergunta");
+    const corPergunta = document.querySelector(".corPergunta");
+    if (titlePergunta.value !== "" && titlePergunta.value.length >= 20 && validHexa(corPergunta.value.toUpperCase())){
+        const correta = document.querySelector(".correta");
+        const urlCorreta = document.querySelector(".urlCorreta");
+        const incorreta1 = document.querySelector(".incorreta1");
+        const urlIncorreta1 = document.querySelector(".urlIncorreta1");
+        const incorreta2 = document.querySelector(".incorreta2");
+        const urlIncorreta2 = document.querySelector(".urlIncorreta2");
+        const incorreta3 = document.querySelector(".incorreta3");
+        const urlIncorreta3 = document.querySelector(".urlIncorreta3");
+        question.title = titlePergunta.value;
+        question.color = corPergunta.value;
+        question.answers = [];
+        const answer = {};
+        const inco1 = {};
+        const inco2 = {};
+        const inco3 = {};
+        if (correta.value !== "" && validURL(urlCorreta.value)){
+            answer.text = correta.value;
+            answer.image = urlCorreta.value;
+            answer.isCorrectAnswer = true;
+            question.answers.push(answer);
+            if (incorreta1.value !== "" && validURL(urlIncorreta1.value)){
+                inco1.text = incorreta1.value;
+                inco1.image = urlIncorreta1.value;
+                inco1.isCorrectAnswer = false;
+                question.answers.push(inco1);
+            }
+            if (incorreta2.value !== "" && validURL(urlIncorreta2.value)){
+                inco2.text = incorreta2.value;
+                inco2.image = urlIncorreta2.value;
+                inco2.isCorrectAnswer = false;
+                question.answers.push(inco2);
+            }
+            if (incorreta3.value !== "" && validURL(urlIncorreta3.value)){
+                inco3.text = incorreta3.value;
+                inco3.image = urlIncorreta3.value;
+                inco3.isCorrectAnswer = false;
+                question.answers.push(answer);
+                question.answers.push(inco3);
+            }
+            if (question.answers.length >= 2){
+                criarNiveis();
+            }else{
+                alert("Insira ao menos 1 resposta errada!");
+            }
+        }else{
+            alert("Insira a resposta correta!");
+        }
+    }else{
+        alert(validHexa(corPergunta.value));
+    }
+    
 }
 
 function criarNiveis(){
@@ -183,7 +243,6 @@ function abrirNivel(nivel, i){
 }
 
 function finalizar(){
-    console.log(dados);
     const tela = document.querySelector(".tela33");
     tela.parentNode.classList.add("escondido");
     tela.parentNode.parentNode.innerHTML += `
