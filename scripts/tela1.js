@@ -9,8 +9,8 @@ function sucess(resposta){
     const quizzes = document.querySelector(".quizzes");
     for (let i = 0; i < data.length; i++){
         quizzes.innerHTML += `
-            <div class="quizz">
-                <img src="${data[i].image}" alt="" onclick="ir_para_oquizz(this)">
+            <div class="quizz" name="${data[i].id}" onclick="ir_para_oquizz(this)">
+                <img src="${data[i].image}" alt="">
                 <p class="legenda">${data[i].title}</p>
             </div>
         `
