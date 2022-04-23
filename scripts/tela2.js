@@ -11,6 +11,7 @@ function ir_para_oquizz(quizEscolhido){
     .then(mostrarQuiz);
     function mostrarQuiz(response) {
         const quiz = response.data;
+        const questoes = quiz.questions;
         console.log(quiz);
         tela.innerHTML += `
             <div class="tela2">
@@ -21,6 +22,13 @@ function ir_para_oquizz(quizEscolhido){
                 </div>
             </div>
         `  
-        //let tela2 = document.querySelector(".tela2");
+        const tela2 = document.querySelector(".tela2");
+        for (let i = 0; i < questoes.length; i++) {
+            const questao = questoes[i];
+            for (let j = 0; j < questao.length; j++) {
+                const alternativa = questao[j];
+                
+            }
+        }
     }
 }
