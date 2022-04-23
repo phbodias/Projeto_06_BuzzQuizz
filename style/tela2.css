@@ -6,7 +6,7 @@
 }
 
 /* Estilização das perguntas do quiz */
-.banner,.box-pergunta, .conteiner-quiz,
+.banner,.mascara,.box-pergunta, .conteiner-quiz,
 .opcoes, .alternativa, .imagem{
   display: flex;
   align-items: center;
@@ -18,24 +18,38 @@
 
 .banner{
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 18vh; 
   margin-top: 69px;
-  background-image: url(/images/hogwartsschoolpotter.jpg);
+  /* background-image: url(/images/hogwartsschoolpotter.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.mascara{
+  position: relative;
+  justify-content: center;
+  width: 100vw;
+  height: 18vh;
+  background-color: black;
+  opacity: 60%;
+}
+
 .banner p{
-  color: #FFFFFF;
+  position: absolute;
+  font-weight: 400;
+  font-size: 39px;
+  line-height: 46px;
+  text-align: center;
+  color: white;
 }
 
 .conteiner-quiz{
   flex-direction: column;
   width: 53vw;
   height: 52%;
-  margin-top: 4%;
+  margin-top: 3%;
   gap: 20px;
   box-sizing: border-box;
   background-color: #FFFFFF;
@@ -111,6 +125,9 @@
 
 
 @media (max-width: 460px){
+  .banner p{
+    font-size: 28px;
+  }
   .box-pergunta p{
     font-size: 19px;
   }
