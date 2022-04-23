@@ -7,12 +7,12 @@
 
 /* Estilização das perguntas do quiz */
 .banner,.mascara,.box-pergunta, .conteiner-quiz,
-.opcoes, .alternativa, .imagem{
+.opcoes,.imagem{
   display: flex;
   align-items: center;
 }
 
-.opcoes, .alternativa{
+.opcoes{
   flex-direction: column;
 }
 
@@ -30,7 +30,7 @@
 .mascara{
   position: relative;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: 18vh;
   background-color: black;
   opacity: 60%;
@@ -42,12 +42,13 @@
   font-size: 39px;
   line-height: 46px;
   text-align: center;
+  word-break: break-all;
   color: white;
 }
 
 .conteiner-quiz{
   flex-direction: column;
-  width: 53vw;
+  width: 53%;
   height: 52%;
   margin-top: 3%;
   gap: 20px;
@@ -66,11 +67,11 @@
 }
 
 .box-pergunta p{
-  font-style: normal;
   font-weight: 700;
   font-size: 23px;
   line-height: 27px;
   text-align: center;
+  word-break: break-all;
   color: #FFFFFF;
 }
 
@@ -100,12 +101,19 @@
   height: 100%;
 }
 
+.alternativa{
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+}
+
 .alternativa p{
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  margin: 7px;
-  width: 100%;
+  text-align: left;
+  margin: 7px 0;
+  word-break: break-all;
 }
 
 /* Responsividade */

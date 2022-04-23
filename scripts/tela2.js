@@ -52,15 +52,17 @@ function ir_para_oquizz(quizEscolhido){
                     <div class="linha-2"></div>
                 </div>
             </div>`
-
-            for (let j = 0; j < questao.length; j++) {
-                const alternativa = questao[j];
-
+            console.log("Tamanho do array de respostas");
+            console.log(questao.answers.length);
+            for (let j = 0; j < questao.answers.length; j++) {
+                const alternativa = questao.answers[j];
+                console.log("Entrou no segundo for");
+                console.log("j = "+j);
                 if(j<=1){
                     console.log("Entrou no IF");
                     const linha1 = document.getElementById(i).querySelector(".linha-1");
                     linha1.innerHTML+= `
-                    <div class="alternativa" name="${isCorrectAnswer}" onclick="verificarResposta()">
+                    <div class="alternativa" name="${alternativa.isCorrectAnswer}" onclick="verificarResposta()">
                         <div class="imagem">
                             <img src="${alternativa.image}" alt="">
                         </div>
@@ -73,12 +75,14 @@ function ir_para_oquizz(quizEscolhido){
                 else{
                     const linha2 = document.getElementById(i).querySelector(".linha-2");
                     linha2.innerHTML+= `
-                    <div class="alternativa" name="${isCorrectAnswer}" onclick="verificarResposta()">
+                    <div class="alternativa" name="${alternativa.image}" onclick="verificarResposta()">
                         <div class="imagem">
                             <img src="${alternativa.image}" alt="">
                         </div>
                         <p>${alternativa.text}</p>
                     </div>`
+                    console.log("Linha 2");
+                    console.log(linha2);
                 }
                 
             }
