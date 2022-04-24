@@ -3,7 +3,6 @@ let acertos = 0;
 
 function ir_para_oquizz(quizEscolhido){
     const tela1 = document.querySelector(".tela1");
-    const tela = document.querySelector(".tela");
     tela1.classList.add("escondido");
 
     const quizID = quizEscolhido.getAttribute("name");
@@ -13,6 +12,7 @@ function ir_para_oquizz(quizEscolhido){
 }
 
 function mostrarQuiz(response) {
+    const tela = document.querySelector(".tela");
     const quiz = response.data;
     const questions = quiz.questions;
     const questoes = questions.sort(embaralhar);
@@ -107,28 +107,28 @@ function verificarResposta(itemClicado){
         else{
             processarResposta(listaLi1, itemClicado);
         }
-
-        //função que dá o efeito esbranquiçado
-        function processarResposta(listaLi) {
-            for (i = 0; i < listaLi.length; i++) {
-                const li = listaLi[i];
-
-                //coloca o efeito esbranquiçado
-                if (!li.classList.contains("clicado")) {
-                    li.style.filter = "contrast(25%) brightness(140%)";
-                }
-                
-                //Muda a cor da alternativa certa para verde e as erradas para vermelho
-                if(li.getAttribute("name")==='true'){
-                    li.querySelector("p").style.color="#009C22";
-                    if (li === itemClicado) {
-                        acertos++;
-                    }
-                }
-                else if(li.getAttribute("name")==='false'){
-                    li.querySelector("p").style.color="#FF0B0B";
-                }
-            }
-        } 
     }
 }
+
+//função que processa as respostas
+function processarResposta(listaLi, itemClicado) {
+    for (i = 0; i < listaLi.length; i++) {
+        const li = listaLi[i];
+
+        //coloca o efeito esbranquiçado
+        if (!li.classList.contains("clicado")) {
+            li.style.filter = "contrast(25%) brightness(140%)";
+        }
+        
+        //Muda a cor da alternativa certa para verde e as erradas para vermelho
+        if(li.getAttribute("name")==='true'){
+            li.querySelector("p").style.color="#009C22";
+            if (li === itemClicado) {
+                acertos++;
+            }
+        }
+        else if(li.getAttribute("name")==='false'){
+            li.querySelector("p").style.color="#FF0B0B";
+        }
+    }
+} 
