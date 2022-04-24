@@ -21,7 +21,6 @@
   width: 100vw;
   height: 18vh; 
   margin-top: 69px;
-  /* background-image: url(/images/hogwartsschoolpotter.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -63,7 +62,6 @@
   height: 12vh;
   margin-top: 3%;
   padding: 20px;
-  background-color: #434CA0;
 }
 
 .box-pergunta p{
@@ -92,7 +90,7 @@
 .imagem{
   justify-content: center;
   width: 22vw;
-  height: 22vh;
+  height: 32vh;
 }
 
 .imagem img{
@@ -116,8 +114,21 @@
   word-break: break-all;
 }
 
+.nao-clicado{
+  filter: contrast(25%) brightness(140%);
+}
+
+.certo{
+  color: #009C22;
+}
+
+.errado{
+  color: #FF0B0B;
+}
+
 /* Responsividade */
 @media (max-width: 1100px){
+
   .conteiner-quiz{
     width: 100vw;
   }
@@ -131,6 +142,12 @@
   }
 }
 
+@media (max-width: 690px){
+
+  .imagem{
+    height: 22vh;
+  }
+}
 
 @media (max-width: 460px){
   .banner p{
