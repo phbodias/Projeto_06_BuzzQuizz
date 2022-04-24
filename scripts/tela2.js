@@ -1,6 +1,6 @@
 //variável global com a qualtidade de acertos
 let acertos = 0;
-let perguntasRespondidas = 0;
+let levels;
 function ir_para_oquizz(quizEscolhido){
     const tela1 = document.querySelector(".tela1");
     tela1.classList.add("escondido");
@@ -16,6 +16,9 @@ function mostrarQuiz(response) {
     const quiz = response.data;
     const questions = quiz.questions;
     const questoes = questions.sort(embaralhar);
+
+    //pegando as informações de níveis do quiz
+    levels = quiz.levels;
 
     function embaralhar() {
         return Math.random()-0.5;
@@ -92,7 +95,7 @@ function verificarResposta(itemClicado){
 
         //adiciona um identificador na alternativa clicada
         itemClicado.classList.add("clicado");
-        perguntasRespondidas++; //incrementa o número de perguntas respondidas 
+        /* perguntasRespondidas++; //incrementa o número de perguntas respondidas  */
         cardDoQuiz.classList.add("respondido"); //marca a pergunta como respondida
         const linha1 = alternativas.querySelector(".linha-1"); //pegando a linha 1
         const linha2 = alternativas.querySelector(".linha-2"); //pegando a linha 2
@@ -144,9 +147,44 @@ function proximaPergunta(respondida){
 
     for (i = 0; i < todasAsPerguntas.length; i++) {
         const li = todasAsPerguntas[i];
-        if (li === respondida && i !== (todasAsPerguntas.length-1)) {
-            const proxima = todasAsPerguntas[i+1];
-            proxima.scrollIntoView({behavior: 'smooth'});
+        if (li === respondida) {
+            //passa para a próxima pergunta apenas se não estivar na última
+            if (i !== (todasAsPerguntas.length-1)) {
+                const proxima = todasAsPerguntas[i+1];
+                proxima.scrollIntoView({behavior: 'smooth'}); 
+            }
+            else if(i === (todasAsPerguntas.length-1)){
+                fimDoQuiz(todasAsPerguntas.length);
+            }
         }
     }
+}
+
+function fimDoQuiz(numDePerguntas) {
+    const ulPerguntas = document.querySelector(".perguntas");
+    const porcentagem = Math.round((acertos / numDePerguntas)*100);
+    //contabilizando o level
+    let infosDoLevel;
+    for (let i = 0; i < levels.length; i++) {
+        if (porcentagem >=levels[i].minValue) {
+            infosDoLevel = levels[i];
+        }
+    }
+    console.log("Levels:");
+    console.log(levels);
+    console.log("infosDoLevel:");
+    console.log(infosDoLevel);
+    ulPerguntas.innerHTML+=`
+    <li class="conteiner-quiz resultado">
+        <div class="box-pergunta" style="background-color: #EC362D">
+            <p>${porcentagem}% de acerto: ${infosDoLevel.title}</p>
+        </div>
+
+        <div class="conteudo">
+            <img src="${infosDoLevel.image}" alt="" />
+            <p>${infosDoLevel.image}</p>
+        </div>
+    </li>`;
+    const resultado = document.querySelector(".resultado");
+    resultado.scrollIntoView({behavior: 'smooth'});
 }
