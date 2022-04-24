@@ -1,8 +1,13 @@
 /* Estilização da página */
-.tela2{
+.tela2, .perguntas{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #FAFAFA;
+}
+
+.perguntas{
+  width: 100%;
 }
 
 /* Estilização das perguntas do quiz */
@@ -41,7 +46,7 @@
   font-size: 39px;
   line-height: 46px;
   text-align: center;
-  word-break: break-all;
+  word-break: break-word;
   color: white;
 }
 
@@ -59,7 +64,7 @@
 .box-pergunta{
   justify-content: center;
   width: 90%;
-  height: 12vh;
+  min-height: 12vh;
   margin-top: 3%;
   padding: 20px;
 }
@@ -69,7 +74,7 @@
   font-size: 23px;
   line-height: 27px;
   text-align: center;
-  word-break: break-all;
+  word-break: break-word;
   color: #FFFFFF;
 }
 
@@ -111,19 +116,7 @@
   line-height: 23px;
   text-align: left;
   margin: 7px 0;
-  word-break: break-all;
-}
-
-.nao-clicado{
-  filter: contrast(25%) brightness(140%);
-}
-
-.certo{
-  color: #009C22;
-}
-
-.errado{
-  color: #FF0B0B;
+  word-break: break-word;
 }
 
 /* Responsividade */

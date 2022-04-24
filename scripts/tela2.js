@@ -1,6 +1,6 @@
 //variável global com a qualtidade de acertos
 let acertos = 0;
-
+let perguntasRespondidas = 0;
 function ir_para_oquizz(quizEscolhido){
     const tela1 = document.querySelector(".tela1");
     tela1.classList.add("escondido");
@@ -28,16 +28,18 @@ function mostrarQuiz(response) {
                 </div>
                 <p>${quiz.title}</p>
             </div>
+            <ul class="perguntas">
+            </ul>
         </div>
     `
 
-    const tela2 = document.querySelector(".tela2");
+    const perguntasDoQuiz = document.querySelector(".perguntas");
 
     for (let i = 0; i < questoes.length; i++) {
         const questao = questoes[i];
         
-        tela2.innerHTML += `
-        <div class="conteiner-quiz">
+        perguntasDoQuiz.innerHTML += `
+        <li class="conteiner-quiz">
             <div class="box-pergunta" style="background-color: ${questao.color}">
                 <p>${questao.title}</p>
             </div>
@@ -46,7 +48,7 @@ function mostrarQuiz(response) {
                 <ul class="linha-1"></ul>
                 <ul class="linha-2"></ul>
             </div>
-        </div>`
+        </li>`
 
         for (let j = 0; j < questao.answers.length; j++) {
             const alternativa = questao.answers[j];
@@ -89,7 +91,8 @@ function verificarResposta(itemClicado){
     if(!foiRespondido){
 
         //adiciona um identificador na alternativa clicada
-        itemClicado.classList.add("clicado"); 
+        itemClicado.classList.add("clicado");
+        perguntasRespondidas++; //incrementa o número de perguntas respondidas 
         cardDoQuiz.classList.add("respondido"); //marca a pergunta como respondida
         const linha1 = alternativas.querySelector(".linha-1"); //pegando a linha 1
         const linha2 = alternativas.querySelector(".linha-2"); //pegando a linha 2
@@ -100,13 +103,14 @@ function verificarResposta(itemClicado){
 
         //Se a pergunta tiver mais de duas alternativas
         if (listaLi2 !== null) {
-            //chama a função de esbranquiçar as alternativas que não foram clicadas
+            //chama a função que processa a resposta do usuário
             processarResposta(listaLi1, itemClicado);
             processarResposta(listaLi2, itemClicado);
         }
-        else{
+        else{ //caso a pergunta tenha apenas duas alternativas
             processarResposta(listaLi1, itemClicado);
         }
+        setTimeout(proximaPergunta(cardDoQuiz),2000); //vai para a próxima pergunta
     }
 }
 
@@ -125,6 +129,7 @@ function processarResposta(listaLi, itemClicado) {
             li.querySelector("p").style.color="#009C22";
             if (li === itemClicado) {
                 acertos++;
+                console.log("acertos: "+acertos);
             }
         }
         else if(li.getAttribute("name")==='false'){
@@ -132,3 +137,16 @@ function processarResposta(listaLi, itemClicado) {
         }
     }
 } 
+
+function proximaPergunta(respondida){
+    const ulPerguntas = document.querySelector(".perguntas");
+    const todasAsPerguntas = ulPerguntas.querySelectorAll('li.conteiner-quiz');
+
+    for (i = 0; i < todasAsPerguntas.length; i++) {
+        const li = todasAsPerguntas[i];
+        if (li === respondida && i !== (todasAsPerguntas.length-1)) {
+            const proxima = todasAsPerguntas[i+1];
+            proxima.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+}
