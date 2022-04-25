@@ -36,6 +36,10 @@ function mostrarQuiz(response) {
             </div>
             <ul class="perguntas">
             </ul>
+            <div class="conteiner-quiz resultado escondido">
+            </div>
+            <button type="reset" class="reiniciar escondido" onclick="reiniciarQuiz()">Reiniciar Quizz</button>
+            <span class="voltar escondido" onclick="voltar()">Voltar pra home</span>
         </div>
     `
 
@@ -60,6 +64,7 @@ function mostrarQuiz(response) {
             const alternativa = questao.answers[j];
 
             if(j<=1){
+                //pega pelo id pois, pela querySelector iria pegar só o primeiro 
                 const linha1 = document.getElementById(i).querySelector(".linha-1");
                 linha1.innerHTML+= `
                 <li class="alternativa" name="${alternativa.isCorrectAnswer}" onclick="verificarResposta(this)">
@@ -135,7 +140,6 @@ function processarResposta(listaLi, itemClicado) {
             li.querySelector("p").style.color="#009C22";
             if (li === itemClicado) {
                 acertos++;
-                console.log("acertos: "+acertos);
             }
         }
         else if(li.getAttribute("name")==='false'){
@@ -164,8 +168,11 @@ function proximaPergunta(respondida){
 }
 
 function fimDoQuiz(numDePerguntas) {
-    const ulPerguntas = document.querySelector(".perguntas");
+    //Pega a div de resultado
+    const divResultado = document.querySelector(".resultado");
+    //Calcula a porcentagem de acerto
     const porcentagem = Math.round((acertos / numDePerguntas)*100);
+
     //contabilizando o level
     let infosDoLevel;
     for (let i = 0; i < levels.length; i++) {
@@ -174,22 +181,29 @@ function fimDoQuiz(numDePerguntas) {
         }
     }
 
-    ulPerguntas.innerHTML+=`
-    <li class="conteiner-quiz resultado">
-        <div class="box-pergunta" style="background-color: #EC362D">
-            <p>${porcentagem}% de acerto: ${infosDoLevel.title}</p>
-        </div>
+    //Constrói a tela de resultado no HTML
+    divResultado.innerHTML+=`
+    <div class="box-pergunta" style="background-color: #EC362D">
+        <p>${porcentagem}% de acerto: ${infosDoLevel.title}</p>
+    </div>
 
-        <div class="conteudo">
-            <img src="${infosDoLevel.image}" alt="" />
-            <p>${infosDoLevel.image}</p>
-        </div>
-    </li>
-    <button class="reiniciar" onclick="reiniciarQuiz()">Reiniciar Quizz</button>
-    <span class="voltar" onclick="voltar()">Voltar pra home</span>
+    <div class="conteudo">
+        <img src="${infosDoLevel.image}" alt="" />
+        <p>${infosDoLevel.image}</p>
+    </div>
     `;
-    const resultado = document.querySelector(".resultado");
-    resultado.scrollIntoView({behavior: 'smooth'});
+
+    //Torna visível a tela de resultado
+    divResultado.classList.remove("escondido");
+
+    //Torna visível os botões de reiniciar quiz e de voltar
+    const btnReiniciar = document.querySelector(".reiniciar");
+    const btnVoltar = document.querySelector(".voltar");
+    btnReiniciar.classList.remove("escondido");
+    btnVoltar.classList.remove("escondido");
+
+    //Faz um scroll até a tela de resultado
+    divResultado.scrollIntoView({behavior: 'smooth'});
 }
 
 function voltar() {
@@ -206,13 +220,43 @@ function reiniciarQuiz() {
         top: 0,
         behavior: 'smooth'
     });
-    
+    const divResultado = document.querySelector(".resultado");
     //limpa a tela para reiniciar o quiz
-    setTimeout(zeraQuiz,500);
+    divResultado.innerHTML+="";
+    divResultado.classList.add("escondido");
 
-    function zeraQuiz() {
-        const tela2 = document.querySelector(".tela2");
-        tela2.innerHTML = "";
-        ir_para_oquizz(quiz);
+    //1-Pegar a lista de perguntas dentro da ul "perguntas"
+    const ulPerguntas = document.querySelector(".perguntas");
+    const listaDePerguntas = ulPerguntas.querySelectorAll('li.conteiner-quiz');
+    //2-Dentro de um for correr a lista para pegar um card de pergunta por vez
+    for (let i = 0; i < listaDePerguntas.length; i++) {
+        const pergunta = listaDePerguntas[i];
+        //3-Remover a classe "respondido" do card de perguntas
+        pergunta.classList.remove("respondido");
+        //4-Outro for para correr a linha 1 e a linha 2 pegando cada uma das alternativas
+        const linha1 = pergunta.querySelector(".linha-1"); 
+        const linha2 = pergunta.querySelector(".linha-2");
+        resetaAlternativas(linha1);
+        resetaAlternativas(linha2);
     }
+
+    function resetaAlternativas(linha) {
+        //Gera um array com os li
+        listaLi = linha.querySelectorAll('.alternativa');
+        for (let j = 0; j < listaLi.length; j++) {
+            const alternativa = listaLi[j];
+            //5-Para cada alternativa remover o filtro de esbranquiçado
+            alternativa.style.filter = "none";
+            //6-Para cada alternativa remover a classe "clicado"
+            alternativa.classList.remove("clicado");
+            //7-Pegar o p de cada alternativa e voltar a cor para o tom inicial (#000000)
+            alternativa.querySelector("p").style.color =  "#000000"
+        }
+    }
+
+    //Remove os botões de reiniciar quiz e de voltar
+    const btnReiniciar = document.querySelector(".reiniciar");
+    const btnVoltar = document.querySelector(".voltar");
+    btnReiniciar.classList.add("escondido");
+    btnVoltar.classList.add("escondido");
 }
