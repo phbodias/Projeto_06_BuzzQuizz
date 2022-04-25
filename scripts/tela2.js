@@ -1,7 +1,10 @@
 //variável global com a qualtidade de acertos
 let acertos = 0;
 let levels;
+let quiz = '';
 function ir_para_oquizz(quizEscolhido){
+    //salva o quiz escolhido para o caso de precisar reiniciar o quiz
+    quiz = quizEscolhido;
     const tela1 = document.querySelector(".tela1");
     tela1.classList.add("escondido");
 
@@ -113,7 +116,7 @@ function verificarResposta(itemClicado){
         else{ //caso a pergunta tenha apenas duas alternativas
             processarResposta(listaLi1, itemClicado);
         }
-        setTimeout(proximaPergunta(cardDoQuiz),2000); //vai para a próxima pergunta
+        setTimeout(proximaPergunta, 2000, cardDoQuiz); //vai para a próxima pergunta
     }
 }
 
@@ -170,10 +173,7 @@ function fimDoQuiz(numDePerguntas) {
             infosDoLevel = levels[i];
         }
     }
-    console.log("Levels:");
-    console.log(levels);
-    console.log("infosDoLevel:");
-    console.log(infosDoLevel);
+
     ulPerguntas.innerHTML+=`
     <li class="conteiner-quiz resultado">
         <div class="box-pergunta" style="background-color: #EC362D">
@@ -184,7 +184,35 @@ function fimDoQuiz(numDePerguntas) {
             <img src="${infosDoLevel.image}" alt="" />
             <p>${infosDoLevel.image}</p>
         </div>
-    </li>`;
+    </li>
+    <button class="reiniciar" onclick="reiniciarQuiz()">Reiniciar Quizz</button>
+    <span class="voltar" onclick="voltar()">Voltar pra home</span>
+    `;
     const resultado = document.querySelector(".resultado");
     resultado.scrollIntoView({behavior: 'smooth'});
+}
+
+function voltar() {
+    window.location.reload();
+}
+
+function reiniciarQuiz() {
+    //zera as variáveis
+    acertos = 0;
+    levels = '';
+
+    //Faz o scroll para o topo da página.
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    //limpa a tela para reiniciar o quiz
+    setTimeout(zeraQuiz,500);
+
+    function zeraQuiz() {
+        const tela2 = document.querySelector(".tela2");
+        tela2.innerHTML = "";
+        ir_para_oquizz(quiz);
+    }
 }
