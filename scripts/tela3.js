@@ -1,3 +1,17 @@
+/*---------------------------------------------- VARIÁVEIS GLOBAIS  ----------------------------------------------*/
+const URL_DA_API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+let nPerguntas, nNiveis;
+let inputPerguntas = [];
+
+let dados = {
+    id:"",
+    title: "", 
+    image: "", 
+    questions: [],
+    levels: []
+};
+
+/* Funções para tratar o formulário de criar um quiz */
 function isImage(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)/.test(url);
 }
@@ -36,10 +50,10 @@ function addQuizz(){
                 <div class="content tela31">
                     <p class="comando">Comece pelo começo</p>
                     <ul>
-                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="https://img.freepik.com/vetores-gratis/imagens-animadas-abstratas-neon-lines_23-2148344065.jpg?w=2000">
+                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="Atenção, isso aqui é um teste">
+                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
                         <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="3">
-                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="3">
+                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="2">
                     </ul>
                     <button class="prosseguir" onclick="addDados_perguntas()">Prosseguir pra criar perguntas</button>
                 </div>
@@ -90,7 +104,7 @@ function criarPerguntas(){
                 <p class="topico">Pergunta 1</p>
                 <div class="inputs">
                 <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="#FFFFFF">
+                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="#434CA0">
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
@@ -145,18 +159,18 @@ function abrirPergunta(pergunta, i){
             <ul>
                 <p class="topico">Pergunta ${i}</p>
                 <div class="inputs">
-                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="#FFFFFF">
+                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="Isso aqui é uma pergunta">
+                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)"#434CA0>
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
-                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)" value="a">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório) value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
                 </div>
                 <p class="topico">Respostas incorretas</p>
                 <div class="inputs">
                     <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="a">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório) value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
                 </div>
                 <div class="inputs">
                     <input class="respOpcional" type="text" placeholder="Resposta incorreta 2" value="">
@@ -323,7 +337,7 @@ function verificarNivel(){
                         text:descNivel[i].value
                     });
                 }
-            return finalizar();
+            return criarQuiz();
         }
     }else{
         alert("Preencha corretamente os campos!");
@@ -378,7 +392,9 @@ function verificaDescNivel(descNivel){
     return true;
 }
 
-function finalizar(){
+function finalizar(response){
+    const quizID = response.data.id;
+    salvarLocalmente(quizID);
     const tela = document.querySelector(".tela33");
     tela.parentNode.classList.add("escondido");
     tela.parentNode.parentNode.innerHTML += `
@@ -401,20 +417,44 @@ function finalizar(){
     `
 }
 
+function criarQuiz() {
+    console.log("dados:");
+    console.log(dados);
+    axios.post(URL_DA_API,dados)
+    .then(finalizar)
+    .catch(erroNoQuiz) 
+ }
+
+function salvarLocalmente(quizID) {
+    let idsSerializados = [];
+    let idsDesserializados = [];
+    if(existeIDSalvo()){
+        idsDesserializados = JSON.parse(localStorage.getItem("idsDoUsuario"));
+        idsDesserializados.push(quizID);
+        idsSerializados = JSON.stringify(idsDesserializados);
+        localStorage.setItem("idsDoUsuario",idsSerializados);
+    }
+    else{
+        idsDesserializados.push(quizID);
+        idsSerializados = JSON.stringify(idsDesserializados);
+        localStorage.setItem("idsDoUsuario",idsSerializados);
+    }
+}
+
+function existeIDSalvo(){
+    const idsSerializados = localStorage.getItem("idsDoUsuario");
+    const idsDeserializados = JSON.parse(idsSerializados);
+    console.log("idsSerializados:");
+    console.log(idsSerializados);
+    console.log("idsDeserializados:");
+    console.log(idsDeserializados);
+    return Boolean(idsDeserializados);
+}
+
+function erroNoQuiz() {
+    alert("Houve um erro ao criar o seu Quiz\nVerifique se os dados estão corretos");
+}
+
 function home(){
     window.location.reload();
 }
-
-/*---------------------------------------------- VARIÁVEIS GLOBAIS  ----------------------------------------------*/
-
-let nPerguntas, nNiveis;
-
-let inputPerguntas = [];
-
-let dados = {
-    id:"",
-    title: "", 
-    image: "", 
-    questions: [],
-    levels: []
-};

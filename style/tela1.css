@@ -119,6 +119,7 @@
     line-height: 22px;
     display: flex;
     align-items: center;
+    word-break: break-all;
     /* falta ajustar o text-overflow */
     overflow: hidden;
     text-overflow: ellipsis;
