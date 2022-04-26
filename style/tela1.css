@@ -51,6 +51,7 @@
 .add{
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .add p{
@@ -142,6 +143,7 @@
         width: 70vw;
         min-width: auto;
         max-width: 340px;
+        margin-right: 0;
         object-fit: cover;
     }
 
@@ -150,8 +152,10 @@
         max-width: 320px;
     }
 
-    .quizzes_usuario{
+    
+    .quizzes_usuario,.quizzes{
         flex-direction: column;
+        align-items: center;
     }
     
 }

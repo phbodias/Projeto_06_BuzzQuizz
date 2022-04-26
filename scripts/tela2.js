@@ -1,7 +1,8 @@
 //variável global com a qualtidade de acertos
 let acertos = 0;
 let levels;
-let quiz = '';
+let quiz;
+let quantRespondida = 0;
 function ir_para_oquizz(quizEscolhido){
     //salva o quiz escolhido para o caso de precisar reiniciar o quiz
     quiz = quizEscolhido;
@@ -57,7 +58,6 @@ function mostrarQuiz(response) {
 
         //Embaralhando as Respostas
         const respostas = embaralharRespostas(questao.answers);
-        console.log(respostas);
 
         for (let j = 0; j < respostas.length; j++) {
             const alternativa = respostas[j];
@@ -99,7 +99,9 @@ function verificarResposta(itemClicado){
 
     //Se a pergunta ainda não foi respondida
     if(!foiRespondido){
-
+        //Incrementa a quantidade de questões respondidas
+        quantRespondida++;
+        
         //adiciona um identificador na alternativa clicada
         itemClicado.classList.add("clicado");
         /* perguntasRespondidas++; //incrementa o número de perguntas respondidas  */
@@ -159,9 +161,9 @@ function proximaPergunta(respondida){
                 const proxima = todasAsPerguntas[i+1];
                 proxima.scrollIntoView({behavior: 'smooth'}); 
             }
-            else if(i === (todasAsPerguntas.length-1)){
-                fimDoQuiz(todasAsPerguntas.length);
-            }
+        }
+        else if(quantRespondida === todasAsPerguntas.length){
+            fimDoQuiz(todasAsPerguntas.length);
         }
     }
 }
@@ -181,6 +183,7 @@ function fimDoQuiz(numDePerguntas) {
     }
 
     //Constrói a tela de resultado no HTML
+    divResultado.innerHTML='';
     divResultado.innerHTML+=`
     <div class="box-pergunta" style="background-color: #EC362D">
         <p>${porcentagem}% de acerto: ${infosDoLevel.title}</p>
@@ -212,6 +215,7 @@ function voltar() {
 function reiniciarQuiz() {
     //zera as variáveis
     acertos = 0;
+    quantRespondida = 0;
 
     //Faz o scroll para o topo da página.
     window.scroll({
