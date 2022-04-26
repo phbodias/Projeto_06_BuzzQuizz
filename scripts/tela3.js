@@ -49,10 +49,10 @@ function addQuizz(){
                 <div class="content tela31">
                     <p class="comando">Comece pelo começo</p>
                     <ul>
-                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="Atenção, isso aqui é um teste">
-                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
-                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="3">
-                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="2">
+                        <input class="tit" type="text" placeholder="Título do seu quizz (20-65 caracteres)" value="">
+                        <input class="url" type="text" placeholder="URL da imagem do seu quizz" value="">
+                        <input class="n" type="text" placeholder="Quantidade de perguntas do quizz (mínimo 3)" value="">
+                        <input class="niveis" type="text" placeholder="Quantidade de níveis do quizz (mínimo 2)" value="">
                     </ul>
                     <button class="prosseguir" onclick="addDados_perguntas()">Prosseguir pra criar perguntas</button>
                 </div>
@@ -102,18 +102,18 @@ function criarPerguntas(){
             <ul class="comando">
                 <p class="topico">Pergunta 1</p>
                 <div class="inputs">
-                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="#434CA0">
+                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
+                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="">
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
-                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)" value="a">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="">
                 </div>
                 <p class="topico">Respostas incorretas</p>
                 <div class="inputs">
-                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="a">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="">
                 </div>
                 <div class="inputs">
                     <input class="respOpcional" type="text" placeholder="Resposta incorreta 2" value="">
@@ -158,18 +158,18 @@ function abrirPergunta(pergunta, i){
             <ul>
                 <p class="topico">Pergunta ${i}</p>
                 <div class="inputs">
-                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="Isso aqui é uma pergunta">
-                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)"#434CA0>
+                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
+                    <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="">
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
-                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório) value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="">
                 </div>
                 <p class="topico">Respostas incorretas</p>
                 <div class="inputs">
-                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="a">
-                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório) value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="">
                 </div>
                 <div class="inputs">
                     <input class="respOpcional" type="text" placeholder="Resposta incorreta 2" value="">
@@ -193,7 +193,7 @@ function verificarInputs(){
     let urlOpcional = document.querySelectorAll(".urlOpcional");
     if (verificarTitulo(titlePergunta) && verificarCor(corPergunta) && verificarRespObrigatoria(respObrigatoria) && verificarUrlObrigatoria(urlObrigatoria) && verificarOpcional(respOpcional, urlOpcional) && titlePergunta.length !== parseInt(nPerguntas)){
         return true;
-    }else if (verificarTitulo(titlePergunta) && verificarCor(corPergunta) && verificarRespObrigatoria(respObrigatoria) && verificarUrlObrigatoria(urlObrigatoria) && verificarOpcional(respOpcional, urlOpcional) && titlePergunta.length === parseInt(nPerguntas)){
+    }else if (titlePergunta.length === parseInt(nPerguntas) && verificarTitulo(titlePergunta) && verificarCor(corPergunta) && verificarRespObrigatoria(respObrigatoria) && verificarUrlObrigatoria(urlObrigatoria) && verificarOpcional(respOpcional, urlOpcional)){
         let j = 0;
         for (let i = 0; i < titlePergunta.length; i++){
             dados.questions.push({
@@ -275,7 +275,7 @@ function criarNiveis(){
                         <input class="nivelTitulo" type="text" placeholder="Título do nível (mínimo de 10 caracteres)" value="">
                         <input class="porcentagem" type="text" placeholder="% de acerto mínima (um número entre 0 e 100, pelo menos 1 nível igual a 0)" value="">
                         <input class="imgNivel" type="text" placeholder="URL da imagem do nível (deve ter formato de URL)" value="">
-                        <input class="descNivel" type="text" placeholder="Descrição do nível (mínimo de 30 caracteres)" value="" class="descNivel">
+                        <input class="descNivel" type="text" placeholder="Descrição do nível (mínimo de 30 caracteres)" value="">
                     </div>
                 </ul>
             </div>
@@ -312,7 +312,7 @@ function abrirNivel(nivel, i){
                     <input class="nivelTitulo" type="text" placeholder="Título do nível (mínimo de 10 caracteres)" value="">
                     <input class="porcentagem" type="text" placeholder="% de acerto mínima (um número entre 0 e 100, pelo menos 1 nível igual a 0)" value="">
                     <input class="imgNivel" type="text" placeholder="URL da imagem do nível (deve ter formato de URL)" value="">
-                    <input class="descNivel" type="text" placeholder="Descrição do nível (mínimo de 30 caracteres)" value="" class="descNivel">
+                    <input class="descNivel" type="text" placeholder="Descrição do nível (mínimo de 30 caracteres)" value="">
                 </div>
             </ul>
         </div>
@@ -327,7 +327,7 @@ function verificarNivel(){
     if (verificaNTitulo(nivelTitulo) && verificaPorcentagem(porcentagem) && verificaImgNivel(imgNivel) && verificaDescNivel(descNivel) && nivelTitulo.length !== parseInt(nNiveis)){
         return true;
     }else if (verificaNTitulo(nivelTitulo) && verificaPorcentagem(porcentagem) && verificaImgNivel(imgNivel) && verificaDescNivel(descNivel) && nivelTitulo.length === parseInt(nNiveis)){
-        if (verificarZero(porcentagem)){
+        if (verificarZero(porcentagem) && verificarRepetido(porcentagem)){
             for (let i = 0; i < nivelTitulo.length; i++){
                     dados.levels.push({
                         title:nivelTitulo[i].value,
@@ -352,6 +352,22 @@ function verificarZero(porcentagem){
     }
     alert("Deve haver ao menos um nível com porcentagem 0!");
     return false;
+}
+
+function verificarRepetido(porcentagem){
+    let quantidadeElementos;
+    let ocorrencias = [];
+    for (let i = 0; i < porcentagem.length; i++){
+        ocorrencias.push(porcentagem[i].value);
+    }
+    for (i = 0; i < ocorrencias.length; i++){
+        quantidadeElementos = ocorrencias.filter(x => x === ocorrencias[i]).length;
+        if (quantidadeElementos > 1){
+            alert("Há diferentes níveis com mesmo valor!");
+            return false;
+        }
+    }
+    return true;
 }
 
 function verificaNTitulo(nivelTitulo){
@@ -406,7 +422,7 @@ function finalizar(response){
                             <p class="comando">Seu quizz está pronto!</p>
                             <img class="image_quizz" src="${dados.image}" alt="">
                             <p class="legenda">${dados.title}</p>
-                            <button class="acessar" onclick="acessarQuiz()">Acessar Quizz</button>
+                            <button class="acessar" onclick="esconder(${quizID})">Acessar Quizz</button>
                             <button class="voltarHome" onclick="home()">Voltar pra home</button>
                         </div>
                     </div>
@@ -415,6 +431,12 @@ function finalizar(response){
             
         </div>
     `
+}
+
+function esconder(quizID){
+    const tela34 = document.querySelector(".tela34");
+    tela34.parentNode.classList.add("escondido");
+    ir_para_oquizz(quizID);
 }
 
 function criarQuiz() {
@@ -454,10 +476,6 @@ function existeIDSalvo(){
 function erroNoQuiz() {
     alert("Houve um erro ao criar o seu Quiz\nVerifique se os dados estão corretos");
 }
-
-/* function acessarQuiz(){
-    
-} */
 
 function home(){
     window.location.reload();
