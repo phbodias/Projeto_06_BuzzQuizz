@@ -22,6 +22,9 @@
 
     <!-- Título da Página -->
     <title>BuzzQuizz</title>
+
+    <!-- Scripts -->
+
 </head>
 <body>
     <div class="topo" onclick="home()">BuzzQuizz</div>
@@ -30,37 +33,18 @@
             <div class="content">
                 <div class="cont">
                     <div class="seusQuizzes">
-                        <div class="nenhum escondido">
+                        <div class="nenhum">
                             <div class="nenhumQuizz">
                                 <p>Você não criou nenhum quizz ainda :(</p>
                                 <button class="button" onclick="addQuizz()">Criar Quizz</button>
                             </div>
                         </div>
-                        <div class="seus">
+                        <div class="seus escondido">
                             <div class="add">
                                 <p>Seus Quizzes</p>
                                 <ion-icon name="add-circle" class="addQuizz" onclick="addQuizz()"></ion-icon>
                             </div>
                             <div class="quizzes_usuario">
-                                <div class="quizz" name="35" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(images/simpsons.png)">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-
-                                <div class="quizz" name="35" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(images/simpsons.png)">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-
-                                <div class="quizz" name="35" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(images/simpsons.png)">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-
-                                <div class="quizz" name="35" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(images/simpsons.png)">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
-
-                                <div class="quizz" name="35" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(images/simpsons.png)">
-                                    <p class="legenda">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                                </div>
 
                             </div>
                         </div>
@@ -74,14 +58,11 @@
                 </div>
             </div>
         </div>
-        
-        
     </div>
-
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/tela3.js"></script>
 	<script src="scripts/tela1.js"></script>
     <script src="scripts/tela2.js"></script>
-    <script src="scripts/tela3.js"></script>
 </body>
 </html>

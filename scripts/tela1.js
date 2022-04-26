@@ -16,6 +16,37 @@ function sucess(resposta){
             `
         }
     }
+    verificaQuizLocal();
+    function verificaQuizLocal(){
+        const idsDesserializados = JSON.parse(localStorage.getItem("idsDoUsuario"));
+        console.log("existeIDSalvo?");
+        console.log(existeIDSalvo());
+/*         console.log("data");
+        console.log(data); */
+        if (existeIDSalvo()) {
+            console.log("passou aqui");
+            for (let i = 0; i < idsDesserializados.length; i++){
+                axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${idsDesserializados}`)
+                .then(renderizar);
+            }
+            function renderizar(response) {
+                const data = response.data;
+                const seus = document.querySelector(".quizzes_usuario");
+                if (validURL(data.image)){
+                    console.log("encontrou um igual");
+                    seus.innerHTML += `
+                        <div class="quizz" name="${data.id}" onclick="abrirQuiz(this)" style="background-image: linear-gradient(to top, black, transparent), url(${data.image})">
+                            <p class="legenda">${data.title}</p>
+                        </div>
+                    `
+                }  
+            }
+            const nenhumQuiz = document.querySelector(".nenhum");
+            const temQuiz = document.querySelector(".seus");
+            nenhumQuiz.classList.add("escondido");
+            temQuiz.classList.remove("escondido");
+        }
+    }
 }
 
 obterQuizz();
