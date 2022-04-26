@@ -21,10 +21,6 @@ function mostrarQuiz(response) {
 
     //pegando as informações de níveis do quiz
     levels = quiz.levels;
-    console.log("quiz.levels");
-    console.log(quiz.levels);
-    console.log("levels");
-    console.log(levels);
 
     tela.innerHTML += `
         <div class="tela2">

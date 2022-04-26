@@ -1,6 +1,6 @@
 .cont{
     margin-top: 69px;
-    width: 1051px;
+    width: 1065px;
 }
 
 .nenhum{
@@ -87,37 +87,40 @@
 .quizzes{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
-.quizzes img, .quizzes_usuario img{
+.quizz{
     width: 340px;
+    min-width: 320px;
     height: 181px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    object-fit: cover;
-}
-
-.quizzes_usuario img{
     margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
-.quizzes_usuario :last-child img{
+.quizzes_usuario :last-child{
     margin-right: 0;
 }
 
+.quizz:hover{
+    cursor: pointer;
+}
+
 .legenda{
-    width: 320px;
-    height: 54px;
-    margin-top: -70px;
+    width: 90%;
+    height: 30%;
     font-size: 19px;
     color: #FFFFFF;
-    margin-left: 10px;
     line-height: 22px;
-    text-align: center;
     display: flex;
     align-items: center;
-    overflow-y: scroll;
+    /* falta ajustar o text-overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 1100px){
@@ -135,21 +138,31 @@
         margin-bottom: 38px;
     }
 
-    .quizzes img, .quizzes_usuario img{
+    .quizz{
         width: 70vw;
+        min-width: auto;
         max-width: 340px;
         object-fit: cover;
     }
 
     .legenda{
-        width: 64vw;
+        width: 84vw;
         max-width: 320px;
-        overflow-y: scroll;
-        margin-top: -70px;
     }
 
     .quizzes_usuario{
         flex-direction: column;
     }
     
+}
+
+@media (max-width: 490px){
+    .cont, .seusQuizzes, .seus, .quizzes_usuario{
+        width: 90vw;
+    }
+    .quizz{
+        width: 100%;
+        margin-right: 0;
+        object-fit: cover;
+    }
 }
