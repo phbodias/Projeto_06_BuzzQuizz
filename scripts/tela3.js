@@ -4,7 +4,6 @@ let nPerguntas, nNiveis;
 let inputPerguntas = [];
 
 let dados = {
-    id:"",
     title: "", 
     image: "", 
     questions: [],
@@ -397,6 +396,7 @@ function finalizar(response){
     salvarLocalmente(quizID);
     const tela = document.querySelector(".tela33");
     tela.parentNode.classList.add("escondido");
+    //To-do: corrigir a função acessarQuiz para a função correta ou criar essa função
     tela.parentNode.parentNode.innerHTML += `
         <div>
             <div>
@@ -454,6 +454,10 @@ function existeIDSalvo(){
 function erroNoQuiz() {
     alert("Houve um erro ao criar o seu Quiz\nVerifique se os dados estão corretos");
 }
+
+/* function acessarQuiz(){
+    
+} */
 
 function home(){
     window.location.reload();

@@ -3,13 +3,19 @@ let acertos = 0;
 let levels;
 let quiz;
 let quantRespondida = 0;
-function ir_para_oquizz(quizEscolhido){
+
+function abrirQuiz(quizEscolhido) {
+    quiz = quizEscolhido
+    const idDoQuiz = quiz.getAttribute("name");
+    ir_para_oquizz(idDoQuiz);
+}
+
+function ir_para_oquizz(idDoQuiz){
     //salva o quiz escolhido para o caso de precisar reiniciar o quiz
-    quiz = quizEscolhido;
     const tela1 = document.querySelector(".tela1");
     tela1.classList.add("escondido");
 
-    const quizID = quizEscolhido.getAttribute("name");
+    const quizID = idDoQuiz;
 
     axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${quizID}`)
     .then(mostrarQuiz);

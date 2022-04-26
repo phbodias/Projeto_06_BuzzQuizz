@@ -10,7 +10,7 @@ function sucess(resposta){
     for (let i = 0; i < data.length; i++){
         if (validURL(data[i].image)){
             quizzes.innerHTML += `
-                <div class="quizz" name="${data[i].id}" onclick="ir_para_oquizz(this)" style="background-image: linear-gradient(to top, black, transparent), url(${data[i].image})">
+                <div class="quizz" name="${data[i].id}" onclick="abrirQuiz(this)" style="background-image: linear-gradient(to top, black, transparent), url(${data[i].image})">
                     <p class="legenda">${data[i].title}</p>
                 </div>
             `
