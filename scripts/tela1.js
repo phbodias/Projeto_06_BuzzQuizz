@@ -26,7 +26,7 @@ function sucess(resposta){
         if (existeIDSalvo()) {
             console.log("passou aqui");
             for (let i = 0; i < idsDesserializados.length; i++){
-                axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${idsDesserializados}`)
+                axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${idsDesserializados[i]}`)
                 .then(renderizar);
             }
             function renderizar(response) {

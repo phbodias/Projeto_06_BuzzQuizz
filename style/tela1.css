@@ -67,7 +67,7 @@
 
 .quizzes_usuario{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     overflow-x: scroll;
     overflow-y: hidden;
 }
