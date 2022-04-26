@@ -17,15 +17,14 @@ function ir_para_oquizz(quizEscolhido){
 function mostrarQuiz(response) {
     const tela = document.querySelector(".tela");
     const quiz = response.data;
-    const questions = quiz.questions;
-    const questoes = questions.sort(embaralhar);
+    const questoes = quiz.questions;
 
     //pegando as informações de níveis do quiz
     levels = quiz.levels;
-
-    function embaralhar() {
-        return Math.random()-0.5;
-    }
+    console.log("quiz.levels");
+    console.log(quiz.levels);
+    console.log("levels");
+    console.log(levels);
 
     tela.innerHTML += `
         <div class="tela2">
@@ -47,7 +46,7 @@ function mostrarQuiz(response) {
 
     for (let i = 0; i < questoes.length; i++) {
         const questao = questoes[i];
-        
+
         perguntasDoQuiz.innerHTML += `
         <li class="conteiner-quiz">
             <div class="box-pergunta" style="background-color: ${questao.color}">
@@ -60,8 +59,12 @@ function mostrarQuiz(response) {
             </div>
         </li>`
 
-        for (let j = 0; j < questao.answers.length; j++) {
-            const alternativa = questao.answers[j];
+        //Embaralhando as Respostas
+        const respostas = embaralharRespostas(questao.answers);
+        console.log(respostas);
+
+        for (let j = 0; j < respostas.length; j++) {
+            const alternativa = respostas[j];
 
             if(j<=1){
                 //pega pelo id pois, pela querySelector iria pegar só o primeiro 
@@ -213,7 +216,6 @@ function voltar() {
 function reiniciarQuiz() {
     //zera as variáveis
     acertos = 0;
-    levels = '';
 
     //Faz o scroll para o topo da página.
     window.scroll({
@@ -222,7 +224,7 @@ function reiniciarQuiz() {
     });
     const divResultado = document.querySelector(".resultado");
     //limpa a tela para reiniciar o quiz
-    divResultado.innerHTML+="";
+    divResultado.innerHTML="";
     divResultado.classList.add("escondido");
 
     //1-Pegar a lista de perguntas dentro da ul "perguntas"
@@ -259,4 +261,14 @@ function reiniciarQuiz() {
     const btnVoltar = document.querySelector(".voltar");
     btnReiniciar.classList.add("escondido");
     btnVoltar.classList.add("escondido");
+}
+
+function embaralharRespostas(questao) {
+    //Embaralhando as respostas
+    const respostas = questao.sort(embaralhar);
+
+    function embaralhar() {
+        return Math.random()-0.5;
+    }
+    return respostas;
 }
