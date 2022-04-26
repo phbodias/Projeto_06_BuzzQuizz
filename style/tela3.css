@@ -1,3 +1,7 @@
+::-webkit-input-placeholder { /* Edge */
+    color: red;
+  }
+
 .tela31, .tela32, .tela33{
     display: flex;
     flex-direction: column;
