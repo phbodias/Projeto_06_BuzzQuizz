@@ -57,8 +57,6 @@ function addDados_perguntas(){
     if (verificaDados(tit.value, url.value, n.value, niveis.value)){
         dados.title = tit.value;
         dados.image = url.value;
-        dados.questions =  [];
-        dados.levels =  [];
         nPerguntas = n.value;
         nNiveis = niveis.value;
         criarPerguntas();
@@ -76,22 +74,48 @@ function addDados_perguntas(){
 }
 
 function criarPerguntas(){
+    
     const tela3= document.querySelector(".tela3");
     const part1 = document.querySelector(".parte1");
     part1.classList.add("escondido");
     tela3.innerHTML += `
         <div class="content tela32">
-            <p class="comando">Crie suas perguntas</p>
+            <ul class="comando">
+                <p class="topico">Pergunta 1</p>
+                <div class="inputs">
+                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+                    <input class="corPergunta" type="color" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="#FFFFFF">
+                </div>
+                <p class="topico">Resposta correta</p>
+                <div class="inputs">
+                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta (obrigatório)" value="a">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                </div>
+                <p class="topico">Respostas incorretas</p>
+                <div class="inputs">
+                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta (obrigatório)" value="a">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem (obrigatório)" value="https://i.pinimg.com/originals/e4/34/2a/e4342a4e0e968344b75cf50cf1936c09.jpg">
+                </div>
+                <div class="inputs">
+                    <input class="respOpcional" type="text" placeholder="Resposta incorreta 2" value="">
+                    <input class="urlOpcional" type="text" placeholder="URL da imagem" value="">
+                </div>
+                <div class="inputs">
+                    <input class="respOpcional" type="text" placeholder="Resposta incorreta 3" value="">
+                    <input class="urlOpcional" type="text" placeholder="URL da imagem" value="">
+                </div>
+            </ul>
         </div>
     `
+    
     const content = document.querySelector(".tela32");
-    for (let i = 0; i < nPerguntas; i++){
+    for (let i = 1; i < nPerguntas; i++){
         content.innerHTML += `
             <div>
                 <div>
                     <div>
                         <ul onclick="abrirPergunta(this, ${i+1})">
-                            <p class="topico" value="1">Pergunta ${i+1}<ion-icon name="create-outline"></ion-icon></p>
+                            <p class="topico">Pergunta ${i+1}<ion-icon name="create-outline"></ion-icon></p>
                         </ul>
                     </div>
                 </div>
@@ -99,7 +123,7 @@ function criarPerguntas(){
         `
     };
     content.innerHTML += `
-        <button class="prosseguir" onclick="a()">Prosseguir pra criar níveis</button>
+        <button class="prosseguir" onclick="verificarPerguntas()">Prosseguir pra criar níveis</button>
     `
 }
 
@@ -112,88 +136,103 @@ function abrirPergunta(pergunta, i){
             <ul>
                 <p class="topico">Pergunta ${i}</p>
                 <div class="inputs">
-                    <input class="titlePergunta" type="text" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
+                <input class="titlePergunta" type="text" maxlength="65" placeholder="Texto da pergunta (min. 20 caracteres)" value="">
                     <input class="corPergunta" type="text" placeholder="Cor de fundo da pergunta (em hexadecimal)" value="">
                 </div>
                 <p class="topico">Resposta correta</p>
                 <div class="inputs">
-                    <input class="correta" type="text" placeholder="Resposta correta" value="">
-                    <input class="urlCorreta" type="text" placeholder="URL da imagem" value="">
+                    <input class="respObrigatoria correta" type="text" placeholder="Resposta correta" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem" value="">
                 </div>
                 <p class="topico">Respostas incorretas</p>
                 <div class="inputs">
-                    <input class="incorreta1" type="text" placeholder="Resposta incorreta 1" value="">
-                    <input class="urlIncorreta1" type="text" placeholder="URL da imagem 1" value="">
+                    <input class="respObrigatoria incorreta1" type="text" placeholder="Resposta incorreta 1" value="">
+                    <input class="urlObrigatoria" type="text" placeholder="URL da imagem 1" value="">
                 </div>
                 <div class="inputs">
-                    <input class="incorreta2" type="text" placeholder="Resposta incorreta 2" value="">
-                    <input class="urlIncorreta2" type="text" placeholder="URL da imagem 2" value="">
+                    <input class="respOpcional" type="text" placeholder="Resposta incorreta 2" value="">
+                    <input class="urlOpcional" type="text" placeholder="URL da imagem 2" value="">
                 </div>
                 <div class="inputs">
-                    <input class="incorreta3" type="text" placeholder="Resposta incorreta 3" value="">
-                    <input class="urlIncorreta3" type="text" placeholder="URL da imagem 3" value="">
+                    <input class="respOpcional" type="text" placeholder="Resposta incorreta 3" value="">
+                    <input class="urlOpcional" type="text" placeholder="URL da imagem 3" value="">
                 </div>
             </ul>
         </div>
     `
 }
 
-function a(){
-    const question = {};
-    const titlePergunta = document.querySelector(".titlePergunta");
-    const corPergunta = document.querySelector(".corPergunta");
-    if (titlePergunta.value !== "" && titlePergunta.value.length >= 20 && validHexa(corPergunta.value.toUpperCase())){
-        const correta = document.querySelector(".correta");
-        const urlCorreta = document.querySelector(".urlCorreta");
-        const incorreta1 = document.querySelector(".incorreta1");
-        const urlIncorreta1 = document.querySelector(".urlIncorreta1");
-        const incorreta2 = document.querySelector(".incorreta2");
-        const urlIncorreta2 = document.querySelector(".urlIncorreta2");
-        const incorreta3 = document.querySelector(".incorreta3");
-        const urlIncorreta3 = document.querySelector(".urlIncorreta3");
-        question.title = titlePergunta.value;
-        question.color = corPergunta.value;
-        question.answers = [];
-        const answer = {};
-        const inco1 = {};
-        const inco2 = {};
-        const inco3 = {};
-        if (correta.value !== "" && validURL(urlCorreta.value)){
-            answer.text = correta.value;
-            answer.image = urlCorreta.value;
-            answer.isCorrectAnswer = true;
-            question.answers.push(answer);
-            if (incorreta1.value !== "" && validURL(urlIncorreta1.value)){
-                inco1.text = incorreta1.value;
-                inco1.image = urlIncorreta1.value;
-                inco1.isCorrectAnswer = false;
-                question.answers.push(inco1);
-            }
-            if (incorreta2.value !== "" && validURL(urlIncorreta2.value)){
-                inco2.text = incorreta2.value;
-                inco2.image = urlIncorreta2.value;
-                inco2.isCorrectAnswer = false;
-                question.answers.push(inco2);
-            }
-            if (incorreta3.value !== "" && validURL(urlIncorreta3.value)){
-                inco3.text = incorreta3.value;
-                inco3.image = urlIncorreta3.value;
-                inco3.isCorrectAnswer = false;
-                question.answers.push(answer);
-                question.answers.push(inco3);
-            }
-            if (question.answers.length >= 2){
-                criarNiveis();
-            }else{
-                alert("Insira ao menos 1 resposta errada!");
-            }
-        }else{
-            alert("Insira a resposta correta!");
-        }
-    }else{
-        alert(validHexa(corPergunta.value));
+function verificarPerguntas(){
+    if (verificarTudo()){
+        return criarNiveis();
     }
-    
+}
+
+function verificarTudo(){
+    if (verificarTitulo() && verificarCor() && verificarRespObrigatoria() && urlObrigatoria() && verificarOpcional()){
+        return true;
+    }
+    return false;
+}
+
+function verificarTitulo(){
+    let titlePergunta = document.querySelectorAll(".titlePergunta");
+    for (let i = 0; i < titlePergunta.length; i++){
+        if (titlePergunta[i].value.length < 20) {
+            alert("O titulo da pergunta deve ter no mínimo 20 caracteres!")
+            return false;
+        }
+    }
+    return true;
+}
+
+function verificarCor(){
+    let corPergunta = document.querySelectorAll(".corPergunta");
+    alert(corPergunta[0].value)
+    for (let i = 0; i < corPergunta.length; i++){
+        if (!validHexa(corPergunta[i].value)) {
+            alert(corPergunta[i].value)
+            alert("A cor da pergunta deve ser definida em formato hexadecimal!")
+            return false;
+        }
+    }
+    return true;
+}
+
+function verificarRespObrigatoria(){
+    let respObrigatoria = document.querySelectorAll(".respObrigatoria");
+    for (let i = 0; i < respObrigatoria.length; i++){
+        if (respObrigatoria[i].value.length < 1) {
+            alert("A resposta não pode ser vazia!")
+            return false;
+        }
+    }
+    return true;
+}
+
+function urlObrigatoria(){
+    let urlObrigatoria = document.querySelectorAll(".urlObrigatoria");
+    for (let i = 0; i < urlObrigatoria.length; i++){
+        if (!validURL(urlObrigatoria[i].value)) {
+            alert("A url não é válida!")
+            return false;
+        }
+    }
+    return true;
+}
+
+function verificarOpcional(){
+    let respOpcional = document.querySelectorAll(".respOpcional");
+    let urlOpcional = document.querySelectorAll(".urlOpcional");
+    for (let i = 0; i < respOpcional.length; i++){
+        if (respOpcional[i].value.length > 0 || urlOpcional[i].value.length > 0) {
+            if (!validURL(urlOpcional[i].value) || respOpcional[i].value.length < 1 || urlOpcional[i].value.length < 1) {
+                alert("Preencha os campos opcionais corretamente ou deixe-os em branco!")
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function criarNiveis(){
@@ -204,11 +243,20 @@ function criarNiveis(){
         <div>
             <div class="content tela33">
                 <p class="comando">Agora, decida os níveis</p>
+                <ul>
+                    <p class="topico">Nível 1</p>
+                    <div class="inputs">
+                        <input type="text" placeholder="Título do nível" value="">
+                        <input type="text" placeholder="% de acerto mínima" value="">
+                        <input type="text" placeholder="URL da imagem do nível" value="">
+                        <input type="text" placeholder="Descrição do nível" value="" class="descNivel">
+                    </div>
+                </ul>
             </div>
         </div>
-        `
+    `
     const content = document.querySelector(".tela33");
-    for (let i = 0; i < nNiveis; i++){
+    for (let i = 1; i < nNiveis; i++){
         content.innerHTML += `
             <div>
                 <div>
@@ -271,90 +319,152 @@ function home(){
 
 /*---------------------------------------------- VARIÁVEIS GLOBAIS  ----------------------------------------------*/
 
-let dados = {};
 let nPerguntas, nNiveis;
 
+let inputPerguntas = [];
 
+let dados = {
+    id:"",
+    title: "", 
+    image: "", 
+    questions: [],
+    levels: []
+};
+
+dados.questions.push({
+    title:"",
+    color:"#ffffff",
+    answers:[{text:"", image:""},{text:"", image:""},{text:"", image:""},{text:"", image:""}]
+})
+
+dados.levels.push({
+    title:"",
+    image:"",
+    minValue: "",
+    text:""
+});
+
+//dados.questions[0].answers.push({text:"", image:""});
 
 /* 
 
 
-tela.innerHTML += `
-        <div class="tela3">
-            <div>
-                <div class="escondido">
-                    <div class="content tela32">
-                        <p class="comando">Crie suas perguntas</p>
-                        <div class="">
-                            <ul>
-                                <p class="topico">Pergunta 1<ion-icon name="create-outline"></ion-icon></p>
-                            </ul>
-                            <ul>
-                                <p class="topico">Pergunta 2<ion-icon name="create-outline"></ion-icon></p>
-                            </ul>
-                            <ul>
-                                <p class="topico">Pergunta 3<ion-icon name="create-outline"></ion-icon></p>
-                            </ul>
-                        </div>
-                        <div class="topicos ">
-                            <ul>
-                                <p class="topico">Pergunta 1</p>
-                                <div class="inputs">
-                                    <input type="text" placeholder="Texto da pergunta" value="">
-                                    <input type="text" placeholder="Cor de fundo da pergunta" value="">
-                                </div>
-                                <p class="topico">Resposta correta</p>
-                                <div class="inputs">
-                                    <input type="text" placeholder="Resposta correta" value="">
-                                    <input type="text" placeholder="URL da imagem" value="">
-                                </div>
-                                <p class="topico">Respostas incorretas</p>
-                                <div class="inputs">
-                                    <input type="text" placeholder="Resposta incorreta 1" value="">
-                                    <input type="text" placeholder="URL da imagem 1" value="">
-                                </div>
-                                <div class="inputs">
-                                    <input type="text" placeholder="Resposta incorreta 2" value="">
-                                    <input type="text" placeholder="URL da imagem 2" value="">
-                                </div>
-                                <div class="inputs">
-                                    <input type="text" placeholder="Resposta incorreta 3" value="">
-                                    <input type="text" placeholder="URL da imagem 3" value="">
-                                </div>
-                            </ul>
-                        </div>
-                        <button class="prosseguir">Prosseguir pra criar níveis</button>
-                    </div>
-                </div>
-            </div>
-            <div class="escondido">
-                <div class="content tela3-3">
-                    <p class="comando">Agora, decida os níveis</p>
-                    <div class=>
-                        <ul>
-                            <p class="topico">Nível 1<ion-icon name="create-outline"></ion-icon></p>
-                        </ul>
-                        <ul>
-                            <p class="topico">Nível 2<ion-icon name="create-outline"></ion-icon></p>
-                        </ul>
-                        <ul>
-                            <p class="topico">Nível 3<ion-icon name="create-outline"></ion-icon></p>
-                        </ul>
-                    </div>
-                    <div class="topicos ">
-                        <ul>
-                            <p class="topico">Nível 1</p>
-                            <div class="inputs">
-                                <input type="text" placeholder="Título do nível" value="">
-                                <input type="text" placeholder="% de acerto mínima" value="">
-                                <input type="text" placeholder="URL da imagem do nível" value="">
-                                <input type="text" placeholder="Descrição do nível" value="">
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `
+function a(){
+    const question = {};
+    const titlePergunta = document.querySelector(".titlePergunta");
+    const corPergunta = document.querySelector(".corPergunta");
+    if (titlePergunta.value !== "" && titlePergunta.value.length >= 20 && validHexa(corPergunta.value.toUpperCase())){
+        const correta = document.querySelector(".correta");
+        const urlCorreta = document.querySelector(".urlCorreta");
+        const incorreta1 = document.querySelector(".incorreta1");
+        const urlIncorreta1 = document.querySelector(".urlIncorreta1");
+        const incorreta2 = document.querySelector(".incorreta2");
+        const urlIncorreta2 = document.querySelector(".urlIncorreta2");
+        const incorreta3 = document.querySelector(".incorreta3");
+        const urlIncorreta3 = document.querySelector(".urlIncorreta3");
+        question.title = titlePergunta.value;
+        question.color = corPergunta.value;
+        question.answers = [];
+        const answer = {};
+        const inco1 = {};
+        const inco2 = {};
+        const inco3 = {};
+        if (correta.value !== "" && validURL(urlCorreta.value)){
+            answer.text = correta.value;
+            answer.image = urlCorreta.value;
+            answer.isCorrectAnswer = true;
+            question.answers.push(answer);
+            if (incorreta1.value !== "" && validURL(urlIncorreta1.value)){
+                inco1.text = incorreta1.value;
+                inco1.image = urlIncorreta1.value;
+                inco1.isCorrectAnswer = false;
+                question.answers.push(inco1);
+            }
+            if (incorreta2.value !== "" && validURL(urlIncorreta2.value)){
+                inco2.text = incorreta2.value;
+                inco2.image = urlIncorreta2.value;
+                inco2.isCorrectAnswer = false;
+                question.answers.push(inco2);
+            }
+            if (incorreta3.value !== "" && validURL(urlIncorreta3.value)){
+                inco3.text = incorreta3.value;
+                inco3.image = urlIncorreta3.value;
+                inco3.isCorrectAnswer = false;
+                question.answers.push(answer);
+                question.answers.push(inco3);
+            }
+            if (question.answers.length >= 2){
+                criarNiveis();
+            }else{
+                alert("Insira ao menos 1 resposta errada!");
+            }
+        }else{
+            alert("Insira a resposta correta!");
+        }
+    }else{
+        alert(validHexa(corPergunta.value));
+    }
+    
+}
 
+
+function a(){
+    console.log("cheguei aqui")
+    console.log(dados.questions[0]);
+    const question = {};
+    const titlePergunta = document.querySelectorAll(".titlePergunta");
+    const corPergunta = document.querySelectorAll(".corPergunta");
+    if (titlePergunta.value !== "" && titlePergunta.value.length >= 20 && validHexa(corPergunta.value.toUpperCase())){
+        const correta = document.querySelectorAll(".correta");
+        const urlCorreta = document.querySelectorAll(".urlCorreta");
+        const incorreta1 = document.querySelectorAll(".incorreta1");
+        const urlIncorreta1 = document.querySelectorAll(".urlIncorreta1");
+        const incorreta2 = document.querySelectorAll(".incorreta2");
+        const urlIncorreta2 = document.querySelectorAll(".urlIncorreta2");
+        const incorreta3 = document.querySelectorAll(".incorreta3");
+        const urlIncorreta3 = document.querySelectorAll(".urlIncorreta3");
+        question.title = titlePergunta.value;
+        question.color = corPergunta.value;
+        question.answers = [];
+        const answer = {};
+        const inco1 = {};
+        const inco2 = {};
+        const inco3 = {};
+        if (correta.value !== "" && validURL(urlCorreta.value)){
+            answer.text = correta.value;
+            answer.image = urlCorreta.value;
+            answer.isCorrectAnswer = true;
+            question.answers.push(answer);
+            if (incorreta1.value !== "" && validURL(urlIncorreta1.value)){
+                inco1.text = incorreta1.value;
+                inco1.image = urlIncorreta1.value;
+                inco1.isCorrectAnswer = false;
+                question.answers.push(inco1);
+            }
+            if (incorreta2.value !== "" && validURL(urlIncorreta2.value)){
+                inco2.text = incorreta2.value;
+                inco2.image = urlIncorreta2.value;
+                inco2.isCorrectAnswer = false;
+                question.answers.push(inco2);
+            }
+            if (incorreta3.value !== "" && validURL(urlIncorreta3.value)){
+                inco3.text = incorreta3.value;
+                inco3.image = urlIncorreta3.value;
+                inco3.isCorrectAnswer = false;
+                question.answers.push(answer);
+                question.answers.push(inco3);
+            }
+            if (question.answers.length >= 2){
+                criarNiveis();
+            }else{
+                alert("Insira ao menos 1 resposta errada!");
+            }
+        }else{
+            alert("Insira a resposta correta!");
+        }
+    }else{
+        alert(correta.value);
+    }
+    
+}
 */
