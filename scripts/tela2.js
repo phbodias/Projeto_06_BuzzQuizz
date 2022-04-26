@@ -13,9 +13,7 @@ function abrirQuiz(quizEscolhido) {
 function ir_para_oquizz(idDoQuiz){
     //salva o quiz escolhido para o caso de precisar reiniciar o quiz
     const tela1 = document.querySelector(".tela1");
-    const tela3 = document.querySelector(".tela3");
     tela1.classList.add("escondido");
-    tela3.classList.add("escondido");
 
     const quizID = idDoQuiz;
 

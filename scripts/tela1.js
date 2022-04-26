@@ -35,7 +35,7 @@ function sucess(resposta){
                 if (validURL(data.image)){
                     console.log("encontrou um igual");
                     seus.innerHTML += `
-                        <div class="quizz" name="${data.id}" onclick="abrirQuiz(this)" style="background-image: linear-gradient(to top, black, transparent), url(${data.image})">
+                        <div class="quizz" name="${data.id}" onclick="ir_para_oquizz(${data.id})" style="background-image: linear-gradient(to top, black, transparent), url(${data.image})">
                             <p class="legenda">${data.title}</p>
                         </div>
                     `
