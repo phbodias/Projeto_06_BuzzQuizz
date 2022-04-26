@@ -312,23 +312,33 @@ function verificarNivel(){
     let imgNivel = document.querySelectorAll(".imgNivel");
     let descNivel = document.querySelectorAll(".descNivel");
     if (verificaNTitulo(nivelTitulo) && verificaPorcentagem(porcentagem) && verificaImgNivel(imgNivel) && verificaDescNivel(descNivel) && nivelTitulo.length !== parseInt(nNiveis)){
-        console.log(nivelTitulo.length, nNiveis);
         return true;
     }else if (verificaNTitulo(nivelTitulo) && verificaPorcentagem(porcentagem) && verificaImgNivel(imgNivel) && verificaDescNivel(descNivel) && nivelTitulo.length === parseInt(nNiveis)){
-        for (let i = 0; i < nivelTitulo.length; i++){
-            dados.levels.push({
-                title:nivelTitulo[i].value,
-                image:imgNivel[i].value,
-                minValue:porcentagem[i].value,
-                text:descNivel[i].value
-            });
+        if (verificarZero(porcentagem)){
+            for (let i = 0; i < nivelTitulo.length; i++){
+                    dados.levels.push({
+                        title:nivelTitulo[i].value,
+                        image:imgNivel[i].value,
+                        minValue:porcentagem[i].value,
+                        text:descNivel[i].value
+                    });
+                }
+            return finalizar();
         }
-        console.log(dados);
-        return finalizar();
     }else{
         alert("Preencha corretamente os campos!");
         return false;
     }
+}
+
+function verificarZero(porcentagem){
+    for (let i = 0; i < porcentagem.length; i++){
+        if (porcentagem[i].value === "0"){
+            return true;
+        }
+    }
+    alert("Deve haver ao menos um nível com porcentagem 0!");
+    return false;
 }
 
 function verificaNTitulo(nivelTitulo){
